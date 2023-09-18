@@ -6,9 +6,9 @@ First off, thank you for considering contributing to the project. It's people li
 
 ### Where do I go from here ?
 
-If you've noticed a bug or have a question, [search the issue tracker](https://github.com/sourcefuse/workflows-creator/issues) to see if
+If you've noticed a bug or have a question, [search the issue tracker](https://github.com/sourcefuse/arc-ng-components/issues) to see if
 someone else in the community has already created a ticket. If not, go ahead and
-[make one](https://github.com/sourcefuse/workflows-creator/issues/new/choose)!
+[make one](https://github.com/sourcefuse/arc-ng-components/issues/new/choose)!
 
 ### Fork & create a branch
 

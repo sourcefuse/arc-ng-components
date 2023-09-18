@@ -30,6 +30,9 @@ module.exports = {
     {name: 'migrations'},
     {name: 'chore'},
     {name: 'core'},
+    {name: 'packages'},
+    {name: 'search-client'},
+    {name: 'user-onboarding'},
   ],
 
   appendBranchNameToCommitMessage: false,

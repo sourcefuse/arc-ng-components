@@ -1,5 +1,10 @@
 {
-  "packages": ["packages/*"],
+  "packages": [ 
+  "packages/user-onboarding/projects/user-onboarding-lib",
+  "packages/user-onboarding/projects/user-onboarding-element",
+  "packages/search/projects/search-lib",
+  "packages/search/projects/search-element"
+],
   "command": {
     "bootstrap": {
       "concurrency": 4,
