@@ -1,35 +1,32 @@
-name: Build and Push Docs
-
+name: Docs
 on:
-  release:
-    types: [published]
-    branches: [master]
-
+  push:
+    branches:
+      - master
+permissions:
+  contents: write
 jobs:
-  build-and-push-docs:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          node-version: "14.x"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build library
-        run: npm run build
-
-      - name: Build documentation
-        run: npm run build:docs
-
-      - name: Push documentation to branch
-        uses: peaceiris/actions-gh-pages@v3
+          python-version: 3.x
+      - name: Setup Node
+        uses: actions/setup-node@v3.6.0
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/
-          publish_branch: docs
+          node-version: '18.x'
+      - name: Bootstrap
+        run: |
+          npm ci
+          npx lerna bootstrap
+          npx lerna run build
+      - name: Install mkdocs deps/plugins
+        run: |
+          pip install mkdocs-material
+          pip install mkdocs-include-markdown-plugin
+      - name: Create the docs directory locally in CI
+        run: npm run export-typedocs
+      - name: Deploy 🚀
+        run: mkdocs gh-deploy --force

@@ -31,6 +31,7 @@ module.exports = {
     {name: 'chore'},
     {name: 'core'},
     {name: 'packages'},
+    {name: 'workflows'},
     {name: 'search-client'},
     {name: 'user-onboarding'},
   ],
