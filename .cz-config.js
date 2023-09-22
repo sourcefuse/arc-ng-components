@@ -34,6 +34,7 @@ module.exports = {
     {name: 'workflows'},
     {name: 'search-client'},
     {name: 'user-onboarding'},
+    {name: 'sandbox'},
   ],
 
   appendBranchNameToCommitMessage: false,
