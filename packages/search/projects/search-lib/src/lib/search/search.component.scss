@@ -71,7 +71,7 @@ $search-width: 86%;
       }
       .mat-form-field-infix {
         //chrome specific only.
-        -webkit-padding-before: 0.7em ;
+        -webkit-padding-before: 0.7em !important;
       }
     }
   }
@@ -84,7 +84,7 @@ $search-width: 86%;
   ::ng-deep {
     .mat-form-field-appearance-outline .mat-form-field-flex {
       height: 39px;
-      align-items: center ;
+      align-items: center !important;
     }
 
     .mat-form-field-appearance-outline .mat-form-field-wrapper {
@@ -93,7 +93,7 @@ $search-width: 86%;
   }
 
   ::ng-deep .mat-form-field-infix {
-    height: auto ;
+    height: auto !important;
   }
 }
 
@@ -266,15 +266,15 @@ $search-width: 86%;
     &.mat-form-field:not(.mat-form-field-disabled) {
       .mat-form-field-outline {
         .mat-form-field-outline-start {
-          border-width: $width ;
-          border-color: $color ;
+          border-width: $width !important;
+          border-color: $color !important;
         }
         .mat-form-field-outline-end {
-          border: $width solid $color ;
-          border-left-style: none ;
-          border-right-style: none ;
-          border-top-right-radius: 0 ;
-          border-bottom-right-radius: 0 ;
+          border: $width solid $color !important;
+          border-left-style: none !important;
+          border-right-style: none !important;
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
         }
       }
     }
@@ -284,17 +284,17 @@ $search-width: 86%;
       .mat-form-field-outline {
         .mat-form-field-outline-start {
           border-radius: 0;
-          border-color: transparent ;
-          background-color: $color ;
+          border-color: transparent !important;
+          background-color: $color !important;
         }
         .mat-form-field-outline-end {
-          border-width: $width ;
-          border-color: $color ;
-          background-color: $color ;
+          border-width: $width !important;
+          border-color: $color !important;
+          background-color: $color !important;
         }
       }
       .mat-select {
-        color: white ;
+        color: white !important;
       }
       .icomoon.arrow_down {
         color: white;
@@ -305,11 +305,12 @@ $search-width: 86%;
 
 ::ng-deep {
   .search-select.mat-select-panel {
+    //overflow: hidden !important;
     margin-top: 30px;
     margin-left: 10px;
   }
   .search-select .mat-option-text {
-    display: contents ;
+    display: contents !important;
   }
   .toolbar-search {
     $size: 14px;

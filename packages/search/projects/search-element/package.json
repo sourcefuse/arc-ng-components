@@ -1,7 +1,7 @@
 {
   "name": "@sourceloop/search-element",
   "version": "5.5.0",
-  "description": "A global search element for search microservice",
+  "description": "A global search element for search microservice.",
   "main": "./search-element.js",
   "private": false,
   "scripts": {
@@ -19,5 +19,5 @@
   },
   "author": "Sourcefuse",
   "license": "MIT",
-  "hash": "4bfca6f436d0a87517d389f0e18bccd7beeb96cbf218813ad8bf909998bdc6db"
+  "hash": "56470be1f48c21d0be8208f91bf7054b4e55c8298ad0dfa459fbd764ed85e015"
 }
