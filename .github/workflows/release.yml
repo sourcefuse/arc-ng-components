@@ -1,3 +1,5 @@
+# This Manually Executable Workflow is for NPM Releases
+
 name: Release [Manual]
 on: workflow_dispatch
 permissions:
@@ -13,29 +15,33 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.RELEASE_COMMIT_GH_PAT }}
       - name: Setup Node
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '20.x'
       - name: Configure CI Git User
         run: |
-          git config --global user.name '@yeshamavani'
-          git config --global user.email 'yesha.mavani@sourcefuse.com'
-          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/sourcefuse/workflows-creator
+          git config --global user.name $CONFIG_USERNAME
+          git config --global user.email $CONFIG_EMAIL
+          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/sourcefuse/arc-ng-components
         env:
           GITHUB_PAT: ${{ secrets.RELEASE_COMMIT_GH_PAT }}
+          CONFIG_USERNAME: ${{ vars.RELEASE_COMMIT_USERNAME }}
+          CONFIG_EMAIL: ${{ vars.RELEASE_COMMIT_EMAIL }}
       - name: Authenticate with Registry
         run: |
-          echo "@yeshasf:registry=https://registry.npmjs.org/" > .npmrc
+          echo "@${NPM_USERNAME}:registry=https://registry.npmjs.org/" > .npmrc
           echo "registry=https://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_USERNAME: ${{ vars.NPM_USERNAME }}
 
       - name: Bootstrap
         run: |
           npm ci
-          npx lerna bootstrap
+          npm i -g lerna@5.1.5
+          lerna bootstrap
       - name: Test
         run: npx lerna run test
       - name: Stash Changes

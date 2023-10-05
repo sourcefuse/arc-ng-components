@@ -1,5 +1,4 @@
 dist
-*.json
 coverage
 .snyk
 docs

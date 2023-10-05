@@ -1,0 +1,23 @@
+{
+  "name": "@sourceloop/search-element",
+  "version": "5.5.0",
+  "description": "A global search element for search microservice.",
+  "main": "./search-element.js",
+  "private": false,
+  "scripts": {
+    "prepublishOnly": "cp package.json dist/package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcefuse/arc-ng-components",
+    "directory": "packages/search"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "directory": "dist"
+  },
+  "author": "Sourcefuse",
+  "license": "MIT",
+  "hash": "56470be1f48c21d0be8208f91bf7054b4e55c8298ad0dfa459fbd764ed85e015"
+}
