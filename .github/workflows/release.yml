@@ -40,7 +40,8 @@ jobs:
       - name: Bootstrap
         run: |
           npm ci
-          npx lerna bootstrap
+          npm i -g lerna@5.1.5
+          lerna bootstrap
       - name: Test
         run: npx lerna run test
       - name: Stash Changes

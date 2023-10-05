@@ -25,8 +25,11 @@ jobs:
       - name: Install Monorepo Deps
         run: npm ci
 
+      - name: Install Lerna
+        run: npm i -g lerna@5.1.5
+
       - name: Bootstrap Monorepo
-        run: npx lerna bootstrap
+        run: lerna bootstrap
 
       - name: Run Test Cases
         run: npx lerna run test
