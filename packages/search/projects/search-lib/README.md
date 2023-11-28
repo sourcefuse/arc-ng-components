@@ -2,6 +2,10 @@
 
 An Angular module that exports a component that can enable users to search over configured models using the search microservice provided in the sourceloop microservice catalog.
 
+### Deprecation Notice
+
+Search-client now supports angular v14, we will provide support for the older version that is based on angular v13 till 30th June 2024.
+
 ## Angular Module
 
 ### Installation

@@ -2,6 +2,10 @@
 
 An Angular module that exports a component that can enable users to search over configured models using the search microservice provided in the sourceloop microservice catalog.
 
+### Deprecation Notice
+
+Search-client now supports angular v14, we will provide support for the older version that is based on angular v13 till 30th June 2024.
+
 ## Angular Module
 
 ### Installation
@@ -145,23 +149,25 @@ type RecentSearchEvent = {
 ></sourceloop-search>
 ```
 
-```
+````
 `Configuration to show only result overlay without search input box`
 There are other parameters which you can configure to use only the search result overlay without search input box
 
 ```html
-<sourceloop-search 
-  [config]="config" 
-  [(ngModel)]="value"   
+<sourceloop-search
+  [config]="config"
+  [(ngModel)]="value"
   [showOnlySearchResultOverlay]="true"
   [customAllLabel]="customAllLabel"
   [customSearchEvent]="customSearchEvent"
 ></sourceloop-search>
-```
+````
+
 You can pass `showOnlySearchResultOverlay` to true to use only search result overlay. You can also pass `customAllLabel` in case you have different model name configuration for performing search in All categories
 
 **Manadatory parameter when you configure `showOnlySearchResultOverlay` to true**
 You should pass `customSearchEvent`
+
 ```ts
 interface CustomSearchEvent {
   searchValue: string;
