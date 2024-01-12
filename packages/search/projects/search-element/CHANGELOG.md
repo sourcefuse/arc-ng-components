@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@6.0.0...@sourceloop/search-element@6.0.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* **search-client:** refactor the SCSS file in the search component to remove 'important' keyword ([#12](https://github.com/sourcefuse/arc-ng-components/issues/12)) ([1324f19](https://github.com/sourcefuse/arc-ng-components/commit/1324f194f3b3405505137d4a5919547195143175))
+
+
+
+
+
 # 6.0.0 (2023-11-28)
 
 
