@@ -81,13 +81,13 @@ export class SearchComponent<T extends IReturnType>
     if (value && value.models) {
       value.models.unshift({
         name: ALL_LABEL,
-        displayName: ALL_LABEL,
+        displayName: this.customAllLabel ?? ALL_LABEL,
       });
     } else if (value && !value.models) {
       value.models = [
         {
           name: ALL_LABEL,
-          displayName: ALL_LABEL,
+          displayName: this.customAllLabel ?? ALL_LABEL,
         },
       ];
     } else {
