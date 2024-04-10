@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@6.0.1...@sourceloop/search-client@6.1.0) (2024-04-10)
+
+
+### Features
+
+* **search-client:** allow custom allLabel ([#15](https://github.com/sourcefuse/arc-ng-components/issues/15)) ([8b45291](https://github.com/sourcefuse/arc-ng-components/commit/8b4529171ea587ff2fd8c733ccd50a819491fe47)), closes [#14](https://github.com/sourcefuse/arc-ng-components/issues/14)
+
+
+
+
+
 ## [6.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@6.0.0...@sourceloop/search-client@6.0.1) (2024-01-12)
 
 
