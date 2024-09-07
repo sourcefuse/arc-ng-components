@@ -23,7 +23,7 @@
     "@sourceloop/user-onboarding-client": "^5.1.1",
     "@videogular/ngx-videogular": "^5.0.1",
     "ngx-webstorage-service": "^5.0.0",
-    "rxjs": "~7.5.5",
+    "rxjs": "~7.8.1",
     "shepherd.js": "^10.0.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
