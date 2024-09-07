@@ -25,7 +25,7 @@
     "ngx-webstorage-service": "^5.0.0",
     "rxjs": "~7.5.5",
     "shepherd.js": "^10.0.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.6.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
