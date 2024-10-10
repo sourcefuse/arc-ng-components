@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import {CoPilotRelatedTopics, LINK_ICON_PATH} from '../../constants';
-// import {environment} from '@rao/env/environment';
 import {LocalizationPipe} from '../../pipes/localization.pipe';
 
 @Component({
@@ -80,12 +79,6 @@ export class CoPilotRelatedTopicsComponent {
     for (const element of relatedTopicDivs) {
       element.removeEventListener('click', event => {
         event.stopPropagation();
-        // window.open(
-        //   `${environment.copilotResourceTopicUrlPrefix}/${element.getAttribute(
-        //     'id',
-        //   )}`,
-        //   '_blank',
-        // );
       });
     }
   }

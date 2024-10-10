@@ -34,6 +34,7 @@ module.exports = {
     {name: 'workflows'},
     {name: 'search-client'},
     {name: 'user-onboarding'},
+    {name: 'ai-assistant'},
     {name: 'sandbox'},
   ],
 

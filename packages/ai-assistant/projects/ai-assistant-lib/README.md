@@ -76,6 +76,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { XComponent } from './x/x.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AiAssistantModule } from 'ai-assistant-lib';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58e8d6b (feat(sandbox): add ai-assistant sandbox example)
 @NgModule({
   declarations: [AppComponent, XComponent],
   imports: [

@@ -16,7 +16,8 @@
         "@sourceloop/payment-example-frontend",
         "@sourceloop/user-onboarding-example",
         "@sourceloop/chat-notif-example-ui-socket",
-        "@sourceloop/oauth-example-ui"
+        "@sourceloop/oauth-example-ui",
+        "@sourceloop/ai-assistant-example"
       ]
     },
     "version": {
@@ -31,7 +32,8 @@
         "@sourceloop/payment-example-frontend",
         "@sourceloop/user-onboarding-example",
         "@sourceloop/chat-notif-example-ui-socket",
-        "@sourceloop/oauth-example-ui"
+        "@sourceloop/oauth-example-ui",
+        "@sourceloop/ai-assistant-example"
       ]
     },
     "clean": {
@@ -40,6 +42,10 @@
       "yes": true
     }
   },
-  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md"
+  ],
   "version": "independent"
 }
