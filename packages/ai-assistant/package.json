@@ -1,0 +1,93 @@
+{
+  "name": "@sourceloop/ai-assistant",
+  "version": "0.0.0",
+  "description": "Library for providing Ai chatbot with server sent events.",
+  "keywords": [
+    "angular-library"
+  ],
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "echo \"No tests available !\"",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
+    "build-library": "ng build ai-assistant",
+    "pack-lib": "cd projects/ai-assistant-lib/dist && npm pack",
+    "lint": "ng lint",
+    "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\" \"**/*.html\"",
+    "prettier:check": "npm run prettier:cli -- --check",
+    "prettier:fix": "npm run prettier:cli -- --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcefuse/arc-ng-components",
+    "directory": "packages/ai-assistant"
+  },
+ "author": "Sourcefuse",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@angular-eslint/builder": "^14.0.1",
+    "@angular-eslint/eslint-plugin": "^14.0.1",
+    "@angular-eslint/eslint-plugin-template": "^14.0.1",
+    "@angular-eslint/schematics": "^14.0.1",
+    "@angular-eslint/template-parser": "^14.0.1",
+    "@angular/animations": "^14.0.1",
+    "@angular/cdk": "^14.0.1",
+    "@angular/common": "^14.0.1",
+    "@angular/compiler": "^14.0.1",
+    "@angular/core": "^14.0.1",
+    "@angular/elements": "^14.0.1",
+    "@angular/forms": "^14.0.1",
+    "@angular/material": "^14.0.1",
+    "@angular/platform-browser": "^14.0.1",
+    "@angular/platform-browser-dynamic": "^14.0.1",
+    "@angular/router": "^14.0.1",
+    "deep-chat": "^1.4.11",
+    "extended-eventsource": "^1.4.9",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.0.1",
+    "@angular/cli": "^14.0.1",
+    "@angular/compiler-cli": "^14.0.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^9.0.2",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "@types/jasmine": "~3.8.0",
+    "@types/node": "18.7.8",
+    "@typescript-eslint/eslint-plugin": "5.27.1",
+    "@typescript-eslint/parser": "5.27.1",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.9.2",
+    "cz-customizable-ghooks": "^2.0.0",
+    "eslint": "^8.17.0",
+    "husky": "^8.0.3",
+    "jasmine-core": "~4.3.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "ng-packagr": "^14.2.0",
+    "prettier": "^2.7.1",
+    "typescript": "4.6.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "directory": "dist"
+  }
+}

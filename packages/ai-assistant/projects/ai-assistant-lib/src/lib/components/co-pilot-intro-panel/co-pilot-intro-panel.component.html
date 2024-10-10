@@ -1,0 +1,29 @@
+<div class="co-pilot-intro-panel-container">
+  <div class="co-pilot-intro-panel-message-container">
+    <div class="co-pilot-intro-panel-message-title">
+      <span>{{ 'welcomeAILbl' | translate }}</span>
+    </div>
+    <div class="co-pilot-intro-panel-subtitle">
+      <span> {{ 'welcomeAISubtextLbl' | translate }} </span>
+    </div>
+  </div>
+
+  <div class="question-panel-container">
+    <div class="co-pilot-ask-heading">
+      <span> {{ 'askHeadingLbl' | translate }} </span>
+    </div>
+    <div class="question-list-container">
+      <div
+        *ngFor="let panel of introQuestionPanels; let i = index"
+        class="co-pilot-intro-suggestions cursor-pointer"
+        (click)="onSuggestionClick($event)"
+        [attr.automation-id]="'suggestion_' + i"
+      >
+        <span class="icomoon insight"></span>
+        <span class="question-text">{{
+          panel.translationKey | translate
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>
