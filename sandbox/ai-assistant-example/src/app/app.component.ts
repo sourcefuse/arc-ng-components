@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {CoPilotComponent} from 'ai-assistant';
+import {CoPilotComponent} from '@sourceloop/ai-assistant-client';
 import {environment} from '../environments/environment';
 
 @Component({

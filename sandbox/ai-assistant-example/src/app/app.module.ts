@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {AiAssistantModule} from 'ai-assistant';
+import {AiAssistantModule} from '@sourceloop/ai-assistant-client';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
