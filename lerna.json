@@ -4,6 +4,7 @@
   "packages/user-onboarding/projects/user-onboarding-element",
   "packages/search/projects/search-lib",
   "packages/search/projects/search-element",
+  "packages/ai-assistant/projects/ai-assistant-lib",
   "sandbox/**"
 ],
   "command": {
