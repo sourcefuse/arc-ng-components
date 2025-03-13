@@ -1,0 +1,43 @@
+{
+  "name": "@sourceloop/ai-assistant-client",
+  "version": "0.0.1",
+  "description": "Library for providing Ai chatbot with server sent events.",
+  "keywords": [
+    "angular-library"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^14.0.1",
+    "@angular/core": "^14.0.1",
+    "@angular/cdk": "^14.0.1",
+    "@angular/elements": "^14.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "deep-chat": "^1.4.11",
+    "extended-eventsource": "^1.4.9"
+  },
+  "scripts": {
+    "checkIfNodeModulesExist": "[ -d \"../../node_modules\" ]",
+    "installNodeModules": "cd ../../ && npm i",
+    "prebuild": "npm run checkIfNodeModulesExist || npm run installNodeModules",
+    "libraryBuild": "ng build ai-assistant && cp -r src/assets dist/assets",
+    "build": "npm run libraryBuild",
+    "postbuild": "echo \"postbuild started !\"",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build",
+    "test": "echo \"No tests available !\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcefuse/arc-ng-components",
+    "directory": "packages/ai-assistant"
+  },
+  "license": "MIT",
+  "private": false,
+  "author": "Sourcefuse",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "directory": "dist"
+  }
+}

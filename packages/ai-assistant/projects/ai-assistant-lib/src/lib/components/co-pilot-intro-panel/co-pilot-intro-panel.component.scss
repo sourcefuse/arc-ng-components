@@ -1,0 +1,95 @@
+
+// shadow dom components have css encapsulated
+// deep chat uses shadow dom concept
+@import '../../../assets/styles/variables.scss';
+
+.co-pilot-intro-panel-container {
+  padding: $mp-16;
+  background-color: $intro-background;
+  height: 83vh;
+  display: flex;
+  flex-direction: column;
+
+  .spin-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .co-pilot-intro-panel-message-container {
+    height: $hw-200;
+    margin-top: $mp-32;
+    display: flex;
+    flex-direction: column;
+    gap: 6.4px;
+
+    .co-pilot-intro-panel-message-title {
+      font-family: $sans-ui-font;
+      font-style: normal;
+      font-weight: $font-wt-md;
+      font-size: $font-20;
+      line-height: $line-height-24;
+      text-align: center;
+      color: $gray-800;
+      padding-top: $mp-20;
+      margin-bottom: $mp-16;
+    }
+
+    .co-pilot-intro-panel-subtitle {
+      font-family: $sans-ui-font;
+      font-style: normal;
+      font-weight: $font-wt-sm;
+      font-size: $font-13;
+      line-height: $line-height-20;
+      text-align: center;
+      color: $gray-600;
+      white-space: pre-wrap;
+    }
+  }
+
+  .co-pilot-ask-heading {
+    font-family: $sans-ui-font;
+    font-style: normal;
+    font-weight: $font-wt-sm;
+    font-size: $font-13;
+    line-height: $line-height-20;
+    color: $gray-600;
+  }
+
+  .co-pilot-intro-suggestions {
+    padding: $mp-12 $mp-16;
+    gap: $mp-16;
+    background: $gray-10;
+    border: 1px solid $light-gray;
+    display: flex;
+    flex-direction: row;
+
+    .question-text {
+      font-family: $sans-ui-font;
+      font-style: normal;
+
+      font-weight: $font-wt-sm;
+      font-size: $font-13;
+      line-height: $line-height-20;
+      color: $gray-800;
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .question-panel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6.4px;
+
+    .question-list-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
