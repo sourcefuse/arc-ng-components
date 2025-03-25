@@ -14,7 +14,7 @@ export class LocalizationProviderService {
   }
 
   getLocalizedString(key: any) {
-    return this.localizedStringMap[key];
+    return this.localizedStringMap[key] ?? key;
   }
 
   getLocalizedStringMap(): AnyObject {

@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   sseUrl: '',
+  downloadurl: '',
+  introQuestionPanels: ''
 };
 
 /*

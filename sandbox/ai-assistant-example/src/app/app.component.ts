@@ -28,6 +28,8 @@ export class AppComponent {
 
       data: {
         sseUrl: environment.sseUrl,
+        downloadurl: environment.downloadurl,
+        introQuestionPanels: environment.introQuestionPanels,
       },
     });
   }

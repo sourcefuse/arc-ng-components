@@ -358,7 +358,8 @@ export class CoPilotComponent {
       signals.onResponse({
         html: `<${CoPilotImage} filekey='${match[1]}' 
         imagecounter='${this.imageCounter}'
-         numquestion='${this.questionNumber}'></${CoPilotImage}>`,
+         numquestion='${this.questionNumber}'
+         downloadurl='${this.data.downloadurl}'></${CoPilotImage}>`,
         role: CoPilotRoles.AI,
       });
       this.imageCounter++;

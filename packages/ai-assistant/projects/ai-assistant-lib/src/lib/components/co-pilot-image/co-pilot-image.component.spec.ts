@@ -9,6 +9,7 @@ import {
 
 import {CoPilotImageComponent} from './co-pilot-image.component';
 import {ImageStoreService} from '../../services/image-store.service';
+import { DeepChatFacadeService } from '../../facades';
 
 describe('CoPilotImageComponent', () => {
   let component: CoPilotImageComponent;
@@ -33,6 +34,7 @@ describe('CoPilotImageComponent', () => {
         {provide: MAT_DIALOG_DATA, useValue: []},
 
         {provide: ImageStoreService, useValue: imageStoreSvcSpy},
+        DeepChatFacadeService
       ],
     }).compileComponents();
 

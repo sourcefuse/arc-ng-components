@@ -20,6 +20,7 @@
           stream="true"
         >
           <ai-co-pilot-intro-panel
+            [introQuestionPanels]="data.introQuestionPanels"
             (sendMessage)="appendMessageFromIntro($event)"
           ></ai-co-pilot-intro-panel>
         </deep-chat>

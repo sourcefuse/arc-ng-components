@@ -48,6 +48,8 @@
         margin-top: $mp-4;
       }
       .co-pilot-header-icon-reset {
+        display: flex;
+        align-items: center;
         .blue-icon {
           color: $blue-icon;
           height: $hw-24;
@@ -62,7 +64,6 @@
           font-size: $font-16;
           height: $font-16;
           position: relative;
-          top: 2.8px;
         }
       }
 

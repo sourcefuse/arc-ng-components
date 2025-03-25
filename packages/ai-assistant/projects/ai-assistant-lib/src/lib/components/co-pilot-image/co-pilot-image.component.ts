@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {take} from 'rxjs';
 
@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ImageStoreService} from '../../services/image-store.service';
 import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {HttpClient} from '@angular/common/http';
+import { DeepChatFacadeService } from '../../facades';
 
 @Component({
   selector: CoPilotImage,
@@ -22,6 +23,7 @@ export class CoPilotImageComponent {
     private readonly sanitizer: DomSanitizer,
     private readonly dialog: MatDialog,
     private readonly imageStoreSvc: ImageStoreService,
+    private readonly deepChatFacadeSvc: DeepChatFacadeService,
     private http: HttpClient,
   ) {}
 
@@ -44,6 +46,9 @@ export class CoPilotImageComponent {
   @Input('numquestion')
   numquestion;
 
+  @Input('downloadurl')
+  downloadurl;
+
   ngAfterViewInit() {
     if (this.filekey) {
       this.createSafeUrl();
@@ -51,7 +56,16 @@ export class CoPilotImageComponent {
   }
 
   createSafeUrl() {
-    // write your own image download logic
+    this.deepChatFacadeSvc
+      .downloadAIFile(this.filekey, this.downloadurl)
+      ?.pipe(take(1))
+      ?.subscribe({
+        next: blob => {
+          const blobUrl = window.URL.createObjectURL(blob);
+          this.blobUrls.push(blobUrl);
+          this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl); // NOSONAR
+        },
+      });
     this.isImageLoading = false;
   }
 

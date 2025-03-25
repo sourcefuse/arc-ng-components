@@ -1,6 +1,6 @@
 import {CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule} from '@angular/core';
 import {AiAssistantComponent} from './ai-assistant.component';
-import {createCustomElement} from '@angular/elements';
+import { createCustomElement } from '@angular/elements';
 import {
   CoPilotComponent,
   CoPilotHeaderComponent,
@@ -27,13 +27,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LocalizationPipe} from './pipes/localization.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DeepChatUtilService} from './services/deep-chat-util.service';
-import {CoPilotVideoService, DeepChatCommsService} from './services';
+import {ApiService, CoPilotVideoService, DeepChatCommsService} from './services';
 import {SseService} from './services/sse.service';
 import {ImageStoreService} from './services/image-store.service';
 import {CoPilotImageViewerComponent} from './components/co-pilot-image-viewer/co-pilot-image-viewer.component';
 import {HttpClientModule} from '@angular/common/http';
 import {DragDropModule} from '@angular/cdk/drag-drop'; // Import DragDropModule
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { DeepChatFacadeService } from './facades';
+import { AnyAdapter } from './adapters';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     CoPilotVideoService,
     SseService,
     ImageStoreService,
+    AnyAdapter,
+    ApiService,
+    DeepChatFacadeService,
   ],
 })
 export class AiAssistantModule {
