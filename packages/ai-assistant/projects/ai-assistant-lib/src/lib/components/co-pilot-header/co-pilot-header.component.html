@@ -11,7 +11,7 @@
       <span class="co-pilot-header-title-text">{{
         'coPilotLbl' | translate
       }}</span>
-      <div class="powered-by-ai-container">
+      <div class="powered-by-ai-container" *ngIf="showPoweredAiText">
         <span class="co-pilot-header-ai-title-powered">
           {{ 'poweredByAILbl' | translate }}
         </span>

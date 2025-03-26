@@ -115,7 +115,7 @@ export class CoPilotComponent {
     this.chatStyle = this.deepChatUtilSvc.getChatStyles();
     this.messageStyles = this.deepChatUtilSvc.getMessageStyles();
     this.textInput = this.deepChatUtilSvc.getTextInput(
-      translationRecord.coPilotPlaceHolderLbl,
+      this.data?.translationRecord?.coPilotPlaceHolderLbl ?? translationRecord.coPilotPlaceHolderLbl,
     );
     this.submitButtonStyles = this.deepChatUtilSvc.getSubmitButtonStyles();
   }
@@ -125,7 +125,7 @@ export class CoPilotComponent {
   }
 
   getTranslationMessages() {
-    this.localalizationSvc.setLocalizedStrings(translationRecord);
+    this.localalizationSvc.setLocalizedStrings(translationRecord, this.data?.translationRecord);
   }
 
   ngAfterViewInit(): void {
@@ -359,7 +359,7 @@ export class CoPilotComponent {
         html: `<${CoPilotImage} filekey='${match[1]}' 
         imagecounter='${this.imageCounter}'
          numquestion='${this.questionNumber}'
-         downloadurl='${this.data.downloadurl}'></${CoPilotImage}>`,
+         downloadurl='${this.data.downloadUrl}'></${CoPilotImage}>`,
         role: CoPilotRoles.AI,
       });
       this.imageCounter++;
@@ -594,7 +594,8 @@ export class CoPilotComponent {
     featureRequestURL: string,
   ): string {
     if (naCase === parseInt(NACase.NA3)) {
-      return NAStrings.nA3(match[2].trim(), featureRequestURL);
+      const customNaString = this?.data?.featureNaString;
+      return customNaString ? customNaString?.na3(match[2].trim()) : NAStrings.nA3(match[2].trim(), featureRequestURL);
     } else {
       return NAStrings[`nA${naCase}`] || '';
     }

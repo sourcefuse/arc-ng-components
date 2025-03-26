@@ -7,9 +7,12 @@ import {AnyObject} from '../interfaces';
 export class LocalizationProviderService {
   localizedStringMap: AnyObject = {};
 
-  setLocalizedStrings(stringMap: AnyObject) {
+  setLocalizedStrings(stringMap: AnyObject, customTranslations: AnyObject) {
     if (stringMap && Object.keys(stringMap).length > 0) {
-      this.localizedStringMap = stringMap;
+      this.localizedStringMap = {
+        ...stringMap,
+        ...customTranslations
+      };
     }
   }
 

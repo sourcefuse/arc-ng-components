@@ -24,7 +24,7 @@ export class CoPilotIntroPanelComponent {
 
   @Input() pageLoading = true;
 
-  @Input() introQuestionPanels = [
+  introQuestionPanels = [
     {translationKey: 'introPanelAIOne'},
     {translationKey: 'introPanelAITwo'},
     {
