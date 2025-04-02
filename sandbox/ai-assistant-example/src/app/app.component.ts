@@ -28,8 +28,12 @@ export class AppComponent {
 
       data: {
         sseUrl: environment.sseUrl,
-        downloadurl: environment.downloadurl,
-        introQuestionPanels: environment.introQuestionPanels,
+        downloadurl: environment.downloadUrl,
+        translationRecord: environment.translationRecord,
+        featureNaString: environment.featureNaString,
+        deleteFeedbackUrl: environment.deleteFeedbackUrl,
+        saveFeedbackUrl: environment.saveFeedbackUrl,
+        updateFeedbackUrl: environment.updateFeedbackUrl
       },
     });
   }

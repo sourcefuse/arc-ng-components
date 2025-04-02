@@ -514,7 +514,10 @@ export class CoPilotComponent {
     this.chatElementRef.nativeElement._addMessage({
       html: `<${CoPilotMessageActions} question='${this.prompt}'
       copy='${this.answerToCopy}'
-       answer='${this.answer}'></${CoPilotMessageActions}>`,
+       answer='${this.answer}'
+       deletefeedbackurl='${this.data.deleteFeedbackUrl}'
+       savefeedbackurl='${this.data.saveFeedbackUrl}'
+       updatefeedbackurl='${this.data.updateFeedbackUrl}'></${CoPilotMessageActions}>`,
       role: CoPilotRoles.FEEDBACK,
       text: null,
     });

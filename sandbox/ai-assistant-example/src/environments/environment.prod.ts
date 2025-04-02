@@ -3,5 +3,8 @@ export const environment = {
   sseUrl: '',
   downloadurl: '',
   translationRecord: '',
-  featureNaString: ''
+  featureNaString: '',
+  deleteFeedbackUrl: '',
+  saveFeedbackUrl: '',
+  updateFeedbackUrl: ''
 };

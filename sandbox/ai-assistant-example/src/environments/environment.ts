@@ -7,7 +7,10 @@ export const environment = {
   sseUrl: '',
   downloadUrl: '',
   translationRecord: '',
-  featureNaString: ''
+  featureNaString: '',
+  deleteFeedbackUrl: '',
+  saveFeedbackUrl: '',
+  updateFeedbackUrl: ''
 };
 
 /*
