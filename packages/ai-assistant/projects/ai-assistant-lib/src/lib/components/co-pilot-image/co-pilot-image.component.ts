@@ -100,6 +100,7 @@ export class CoPilotImageComponent {
         ),
         currentQuestionNumber: parseInt(questionNumber),
         currentImageNumber: parseInt(imageNumber),
+        downloadUrl: this.downloadurl
       },
 
       height: '100%',

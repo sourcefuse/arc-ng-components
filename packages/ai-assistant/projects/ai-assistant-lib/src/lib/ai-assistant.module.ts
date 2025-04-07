@@ -27,7 +27,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LocalizationPipe} from './pipes/localization.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DeepChatUtilService} from './services/deep-chat-util.service';
-import {ApiService, CoPilotVideoService, DeepChatCommsService} from './services';
+import {ApiService, CoPilotVideoService, DeepChatCommsService, DownloadService} from './services';
 import {SseService} from './services/sse.service';
 import {ImageStoreService} from './services/image-store.service';
 import {CoPilotImageViewerComponent} from './components/co-pilot-image-viewer/co-pilot-image-viewer.component';
@@ -86,6 +86,7 @@ import { AnyAdapter } from './adapters';
     AnyAdapter,
     ApiService,
     DeepChatFacadeService,
+    DownloadService
   ],
 })
 export class AiAssistantModule {
