@@ -46,11 +46,12 @@
     border-radius: $border-radius-4;
     line-height: $line-height-16;
     cursor: pointer;
-    width: $hw-124;
     height: $hw-36;
     transition: opacity 0.3s ease;
-    font-size: $font-13;
+    font-size: $font-14;
+    font-weight: 600;
     display: none;
+    align-items: center;
 
     .Eye-Outline {
       margin-right: $mp-8;
