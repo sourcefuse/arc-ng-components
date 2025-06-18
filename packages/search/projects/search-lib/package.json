@@ -3,20 +3,20 @@
   "version": "6.1.0",
   "description": "A global search component for search microservice.",
   "peerDependencies": {
-    "@angular/animations": "^14.0.1",
-    "@angular/cdk": "^14.0.1",
-    "@angular/common": "^14.0.1",
-    "@angular/compiler": "^14.0.1",
-    "@angular/core": "^14.0.1",
-    "@angular/elements": "^14.0.1",
-    "@angular/flex-layout": "~14.0.0-beta.39",
-    "@angular/forms": "^14.0.1",
-    "@angular/material": "^14.0.1",
-    "@angular/platform-browser": "^14.0.1",
-    "@angular/platform-browser-dynamic": "^14.0.1",
-    "@angular/router": "^14.0.1",
-    "rxjs": "~7.5.5",
-    "zone.js": "~0.11.5"
+    "@angular/animations": "^17.3.0",
+    "@angular/cdk": "^17.3.0",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/elements": "^17.3.0",
+    "@angular/flex-layout": "~15.0.0-beta.42",
+    "@angular/forms": "^17.3.0",
+    "@angular/material": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "rxjs": "~7.8.1",
+    "zone.js": "~0.14.3"
   },
   "scripts": {
     "checkIfNodeModulesExist": "[ -d \"../../node_modules\" ]",
@@ -34,7 +34,7 @@
     "tslib": "^2.2.0"
   },
   "devDependencies": {
-    "@angular/elements": "^14.0.1",
+    "@angular/elements": "^17.3.0",
     "@types/fs-extra": "^11.0.1"
   },
   "repository": {
