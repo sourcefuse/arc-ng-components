@@ -4,7 +4,7 @@
   "description": "payment-example-frontend.",
   "private": true,
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.7.8",
     "dotenv": "^8.2.0",
     "mdbreact": "5.2.0",
     "react": "^16.12.0",
