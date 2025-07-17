@@ -1,4 +1,4 @@
- {
+{
   "name": "@sourceloop/ai-assistant-client",
   "version": "0.1.0",
   "description": "Library for providing Ai chatbot with server sent events.",
