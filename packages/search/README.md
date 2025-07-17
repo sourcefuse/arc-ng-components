@@ -4,7 +4,7 @@ An Angular module that exports a component that can enable users to search over 
 
 ### Deprecation Notice
 
-Search-client now supports Angular v17, we will provide support for the older version that is based on Angular v14 till 30th July 2025.
+Search-client now supports Angular v17, we will provide support for the older version that is based on Angular v14 till 30th August 2025 .
 
 ## Angular Module
 
