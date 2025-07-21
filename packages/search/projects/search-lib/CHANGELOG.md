@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@7.0.0...@sourceloop/search-client@7.0.1) (2025-07-21)
+
+**Note:** Version bump only for package @sourceloop/search-client
+
+
+
+
+
 # [7.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@6.1.0...@sourceloop/search-client@7.0.0) (2025-07-18)
 
 
