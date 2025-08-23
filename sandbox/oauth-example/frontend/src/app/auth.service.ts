@@ -2,27 +2,27 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 const localAuthUrl = environment.API_URL + `auth/login`;
 const googleAuthUrl = environment.API_URL + `auth/google`;
 const facebookAuthUrl = environment.API_URL + `auth/facebook`;
 const azureAuthUrl = environment.API_URL + `auth/azure`;
-
+const samlAuthUrl = environment.API_URL + `auth/saml`;
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) { }
 
   createAuthorizationHeader(headers: HttpHeaders, token: string) {
     headers.append('Authorization', `Bearer ${token}`);
   }
 
   login(username: string, password: string) {
-    return this.http.post<{code: string}>(localAuthUrl, {
+    return this.http.post<{ code: string }>(localAuthUrl, {
       username: username,
       password: password,
       client_id: 'test_client_id',
@@ -63,4 +63,9 @@ export class AuthService {
   loginViaAzure() {
     this.oAuthLogin(azureAuthUrl);
   }
+
+  loginViaSaml() {
+    this.oAuthLogin(samlAuthUrl);
+  }
+
 }
