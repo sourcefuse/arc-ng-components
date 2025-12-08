@@ -39,9 +39,9 @@ jobs:
 
       - name: Bootstrap
         run: |
-          npm ci
-          npm i -g lerna@5.1.5
-          lerna bootstrap
+          npm ci --ignore-scripts
+          npm i -g lerna@5.1.5 --ignore-scripts
+          lerna bootstrap --ignore-scripts
       - name: Test
         run: npx lerna run test
       - name: Stash Changes

@@ -23,13 +23,13 @@ jobs:
       - run: npm --version
 
       - name: Install Monorepo Deps
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Lerna
-        run: npm i -g lerna@5.1.5
+        run: npm i -g lerna@5.1.5 --ignore-scripts
 
       - name: Bootstrap Monorepo
-        run: lerna bootstrap
+        run: lerna bootstrap --ignore-scripts
 
       - name: Run Test Cases
         run: npx lerna run test
