@@ -97,7 +97,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SearchElement:build"
+            "buildTarget": "search-element:build"
           }
         },
         "test": {
@@ -118,6 +118,5 @@
         }
       }
     }
-  },
-  "defaultProject": "search-lib"
+  }
 }

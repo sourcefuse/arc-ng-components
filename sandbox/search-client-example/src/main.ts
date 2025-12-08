@@ -2,14 +2,21 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import {enableProdMode} from '@angular/core';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import {AppModule} from './app/app.module';
-import {environment} from './environments/environment';
+import {bootstrapApplication} from '@angular/platform-browser';
+import {provideHttpClient} from '@angular/common/http';
+import {provideAnimations} from '@angular/platform-browser/animations';
+import {SEARCH_SERVICE_TOKEN} from '@sourceloop/search-client';
+import {AppComponent} from './app/app.component';
+import {SearchService} from './app/search.service';
+import {LocalStorageService} from './app/local-storage.service';
 
-if (environment.production) {
-  enableProdMode();
-}
+bootstrapApplication(AppComponent, {
+  providers: [
+    {provide: SEARCH_SERVICE_TOKEN, useClass: SearchService},
+    LocalStorageService,
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+    provideHttpClient(), 
+    provideAnimations(),
+  ],
+}).catch(err => console.error(err));

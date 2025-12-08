@@ -19,7 +19,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Configuration} from './lib-configuration';
 
 @NgModule({
-  declarations: [SearchComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,8 +31,8 @@ import {Configuration} from './lib-configuration';
     MatInputModule,
     MatButtonModule,
     FlexLayoutModule,
+    SearchComponent,
   ],
-  bootstrap: [],
 })
 export class SearchElementModule {
   constructor(private injector: Injector) {}

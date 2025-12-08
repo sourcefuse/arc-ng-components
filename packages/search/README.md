@@ -4,7 +4,7 @@ An Angular module that exports a component that can enable users to search over 
 
 ### Deprecation Notice
 
-Search-client now supports Angular v17, we will provide support for the older version that is based on Angular v14 till 30th August 2025 .
+Search-client now supports Angular v19, we will provide support for the older version that is based on Angular v17 till 31st March 2026 .
 
 ## Angular Module
 
@@ -16,33 +16,21 @@ npm i @sourceloop/search-client
 
 ### Usage
 
-Create a new Application using Angular CLI and import the SearchLibModule and add it to the imports array of the module. Also create a new service that implements the ISearchService interface exported by the search library. This service will be used by the exported component to make API calls whenever needed. You will have to update the providers section of your module with { provide: SEARCH_SERVICE_TOKEN, useExisting: Your_Service_Name }
-Your module will then look something like this
+Create a new Application using Angular CLI and import the `SearchComponent` in your application.SearchComponent is now a standalone component, so no NgModule is required.Also create a new service that implements the ISearchService interface exported by the search library. This service will be used by the exported component to make API calls whenever needed. You will have to update the providers section of your module with { provide: SEARCH_SERVICE_TOKEN, useExisting: Your_Service_Name }
 
 ```ts
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { SearchComponent, SEARCH_SERVICE_TOKEN } from '@sourceloop/search-client';
+import { SearchService } from './search.service';
 
-import {AppComponent} from './app.component';
-
-import {HttpClientModule} from '@angular/common/http';
-import {XComponent} from './x/x.component';
-import {ReactiveFormsModule} from '@angular/forms';
-
-import {SearchLibModule, SEARCH_SERVICE_TOKEN} from 'search-lib';
-import {SearchService} from './search.service';
-@NgModule({
-  declarations: [AppComponent, XComponent],
-  imports: [
-    BrowserModule,
-    SearchLibModule, //import SearchLibModule
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
-  providers: [{provide: SEARCH_SERVICE_TOKEN, useClass: SearchService}], //Add your service here
-  bootstrap: [AppComponent],
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [SearchComponent],
+  templateUrl: './app.component.html',
+  providers: [{ provide: SEARCH_SERVICE_TOKEN, useClass: SearchService }],
 })
-export class AppModule {}
+export class AppComponent {}
 ```
 
 ### Search Service
