@@ -21,7 +21,11 @@ import {
 import {Configuration} from '../lib-configuration';
 import {Subject} from 'rxjs';
 import {debounceTime, tap} from 'rxjs/operators';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 import {
   CustomSearchEvent,
   ISearchService,
@@ -41,12 +45,16 @@ import {
   ISearchServiceWithPromises,
   isApiServiceWithPromise,
 } from '../types';
-import {isPlatformBrowser} from '@angular/common';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {PromiseApiAdapterService} from './promise-api-adapter.service';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 const ALL_LABEL = 'All';
 @Component({
   selector: 'sourceloop-search',
+  standalone: true,
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   providers: [
@@ -55,6 +63,14 @@ const ALL_LABEL = 'All';
       useExisting: SearchComponent,
       multi: true,
     },
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
 })
 export class SearchComponent<T extends IReturnType>

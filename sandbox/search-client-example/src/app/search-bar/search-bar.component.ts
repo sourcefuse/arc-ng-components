@@ -2,12 +2,19 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
+import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
-import {Configuration, IDefaultReturnType} from '@sourceloop/search-client';
-
+import {FormsModule} from '@angular/forms';
+import {
+  IDefaultReturnType,
+  Configuration,
+  SearchComponent,
+} from '@sourceloop/search-client';
 @Component({
   selector: 'app-search-bar',
+  standalone: true,
   templateUrl: './search-bar.component.html',
+  imports: [CommonModule, FormsModule, SearchComponent],
 })
 export class SearchBarComponent {
   config: Configuration<IDefaultReturnType>;
