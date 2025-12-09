@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@8.0.1...@sourceloop/search-element@9.0.0) (2025-12-09)
+
+
+### Features
+
+* **deps:** add support for angular v20 ([#49](https://github.com/sourcefuse/arc-ng-components/issues/49)) ([3ef0a0f](https://github.com/sourcefuse/arc-ng-components/commit/3ef0a0fdb0e3de05c1645e9e55f2de1069bfc6fe)), closes [#48](https://github.com/sourcefuse/arc-ng-components/issues/48)
+
+
+### BREAKING CHANGES
+
+* **deps:** YES
+
+
+
+
+
 ## [8.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@8.0.0...@sourceloop/search-element@8.0.1) (2025-12-09)
 
 **Note:** Version bump only for package @sourceloop/search-element
