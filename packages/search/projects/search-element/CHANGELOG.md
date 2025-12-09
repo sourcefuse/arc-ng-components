@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@8.0.0...@sourceloop/search-element@8.0.1) (2025-12-09)
+
+**Note:** Version bump only for package @sourceloop/search-element
+
+
+
+
+
 # [8.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@6.1.0...@sourceloop/search-element@8.0.0) (2025-12-09)
 
 
