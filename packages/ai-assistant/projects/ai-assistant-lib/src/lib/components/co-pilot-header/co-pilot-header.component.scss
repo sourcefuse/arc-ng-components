@@ -20,6 +20,7 @@
       height: $hw-24;
       display: flex;
       gap: 12.8px;
+      align-items: center;
       .co-pilot-header-title-text {
         font-weight: $font-wt-md;
         font-size: $font-18;
@@ -36,6 +37,10 @@
           display: flex;
         }
       }
+      .co-pilot-icon {
+        font-size: 24px;
+        color: #4d4d4d;
+      }
     }
 
     .co-pilot-header-icons {
@@ -48,6 +53,8 @@
         margin-top: $mp-4;
       }
       .co-pilot-header-icon-reset {
+        display: flex;
+        align-items: center;
         .blue-icon {
           color: $blue-icon;
           height: $hw-24;
@@ -62,7 +69,6 @@
           font-size: $font-16;
           height: $font-16;
           position: relative;
-          top: 2.8px;
         }
       }
 

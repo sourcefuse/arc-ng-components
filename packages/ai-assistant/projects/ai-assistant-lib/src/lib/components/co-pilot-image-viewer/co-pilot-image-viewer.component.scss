@@ -1,4 +1,5 @@
 @import '../../../assets/styles/variables.scss';
+@import '../../../assets/icons/icomoon/style.css';
 
 .co-pilot-image-viewer-container {
   display: flex;
@@ -25,9 +26,9 @@
     .co-pilot-image-viewer-title-bar-left {
       justify-content: flex-start;
       .Arrow-Left {
-        transform: rotate(180deg);
         margin-left: $mp-16;
         margin-right: $mp-16;
+        margin-top: 10px;
       }
     }
 
@@ -36,6 +37,7 @@
       margin-right: $hw-120;
       .Minus {
         margin-right: $mp-16;
+        margin-bottom: 8px;
       }
       .co-pilot-zoom-percentage {
         margin-right: $mp-16;

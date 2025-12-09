@@ -5,6 +5,12 @@
 export const environment = {
   production: false,
   sseUrl: '',
+  downloadUrl: '',
+  translationRecord: '',
+  featureNaString: '',
+  deleteFeedbackUrl: '',
+  saveFeedbackUrl: '',
+  updateFeedbackUrl: ''
 };
 
 /*
