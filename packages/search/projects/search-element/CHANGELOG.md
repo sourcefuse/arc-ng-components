@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@6.1.0...@sourceloop/search-element@8.0.0) (2025-12-09)
+
+
+### Documentation
+
+* **search-client:** update readme after upgrading to angular 17 ([#34](https://github.com/sourcefuse/arc-ng-components/issues/34)) ([2471785](https://github.com/sourcefuse/arc-ng-components/commit/247178534a7c5a4561fd54d38f19412e3b58beac)), closes [#30](https://github.com/sourcefuse/arc-ng-components/issues/30) [#30](https://github.com/sourcefuse/arc-ng-components/issues/30)
+
+
+### Features
+
+* **deps:** adds support for Angular 19 and migrates the component to a fully standalone structure ([#45](https://github.com/sourcefuse/arc-ng-components/issues/45)) ([8f7f7e3](https://github.com/sourcefuse/arc-ng-components/commit/8f7f7e3f46c3edefd87877bf886db7eb31716435)), closes [#42](https://github.com/sourcefuse/arc-ng-components/issues/42)
+* **sandbox:** add ai-assistant sandbox example in package ([#22](https://github.com/sourcefuse/arc-ng-components/issues/22)) ([cfa4d20](https://github.com/sourcefuse/arc-ng-components/commit/cfa4d20bc9fc4fa93dbaf31b6a68ebe9a9f326ee))
+
+
+### BREAKING CHANGES
+
+* **deps:** YES
+
+## Description
+
+This pull request modernizes the `@sourceloop/search-client` library and
+its example by upgrading to Angular 19, refactoring the search component
+to be standalone, and updating documentation and configuration to
+reflect these changes. The updates simplify integration for consumers
+and leverage Angular's latest features for improved modularity and
+maintainability.
+* **search-client:** 
+
+
+
+
+
 # [7.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@6.1.0...@sourceloop/search-element@7.0.0) (2025-07-18)
 
 
