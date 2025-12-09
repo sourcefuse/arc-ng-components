@@ -3,18 +3,18 @@
   "version": "8.0.1",
   "description": "A global search component for search microservice.",
   "peerDependencies": {
-    "@angular/animations": "^19.2.17",
-    "@angular/cdk": "^19.2.17",
-    "@angular/common": "^19.2.17",
-    "@angular/compiler": "^19.2.17",
-    "@angular/core": "^19.2.17",
-    "@angular/elements": "^19.2.17",
+    "@angular/animations": "^20.0.3",
+    "@angular/cdk": "^20.0.3",
+    "@angular/common": "^20.0.3",
+    "@angular/compiler": "^20.0.3",
+    "@angular/core": "^20.0.3",
+    "@angular/elements": "^20.0.3",
     "@angular/flex-layout": "~15.0.0-beta.42",
-    "@angular/forms": "^19.2.17",
-    "@angular/material": "^19.2.17",
-    "@angular/platform-browser": "^19.2.17",
-    "@angular/platform-browser-dynamic": "^19.2.17",
-    "@angular/router": "^19.2.17",
+    "@angular/forms": "^20.0.3",
+    "@angular/material": "^20.0.3",
+    "@angular/platform-browser": "^20.0.3",
+    "@angular/platform-browser-dynamic": "^20.0.3",
+    "@angular/router": "^20.0.3",
     "rxjs": "~7.8.1",
     "zone.js": "^0.15.0"
   },
@@ -34,7 +34,7 @@
     "tslib": "^2.2.0"
   },
   "devDependencies": {
-    "@angular/elements": "^19.2.17",
+    "@angular/elements": "^20.0.3",
     "@types/fs-extra": "^11.0.1"
   },
   "repository": {
