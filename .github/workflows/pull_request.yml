@@ -21,13 +21,13 @@ jobs:
 
       - name: Run npm install
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Lerna
-        run: npm i -g lerna@5.1.5
+        run: npm i -g lerna@5.1.5 --ignore-scripts
 
       - name: Bootstrap Monorepo
-        run: lerna bootstrap
+        run: lerna bootstrap --ignore-scripts
 
       - name: Run test
         run: lerna run test
