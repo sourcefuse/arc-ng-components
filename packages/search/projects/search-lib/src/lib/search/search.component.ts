@@ -70,7 +70,7 @@ const ALL_LABEL = 'All';
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
 })
 export class SearchComponent<T extends IReturnType>
@@ -111,6 +111,8 @@ export class SearchComponent<T extends IReturnType>
     }
   }
 
+  /* The above code is a setter method in a TypeScript class that takes a parameter `searchProvider` of
+type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   @Input()
   public set searchProvider(
     value: ISearchService<T> | ISearchServiceWithPromises<T>,
