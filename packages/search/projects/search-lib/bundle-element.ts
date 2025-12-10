@@ -27,7 +27,7 @@ async function elementsBundler() {
   const file = '../search-element/dist/search-element.js';
   const data = readFileSync(file);
   const hash = crypto.createHash('sha256');
-  hash.update(data);
+  hash.update(new Uint8Array(data));
 
   const fileHash = hash.digest('hex');
 
