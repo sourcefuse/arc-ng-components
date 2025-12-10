@@ -2,9 +2,32 @@
 
 An Angular module that exports a component that can enable users to search over configured models using the search microservice provided in the sourceloop microservice catalog.
 
-### Deprecation Notice
+### Angular Version Compatibility
 
-Search-client now supports Angular v20, we will provide support for the older version that is based on Angular v19 till 30th June 2026 .
+To ensure smooth integration, install the Search Library version that corresponds to your Angular version:
+
+<table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; text-align: left;">
+  <thead>
+    <tr>
+      <th>Angular Version</th>
+      <th>Compatible Search-Client Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Angular v19</td>
+      <td>@sourceloop/search-client v8.x</td>
+    </tr>
+    <tr>
+      <td>Angular v20</td>
+      <td>@sourceloop/search-client v9.x</td>
+    </tr>
+    <tr>
+      <td>Angular v21+</td>
+      <td>Latest version (v10.x and above)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Angular Module
 
