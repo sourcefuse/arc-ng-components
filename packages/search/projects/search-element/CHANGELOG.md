@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.1...@sourceloop/search-element@10.0.0) (2025-12-11)
+
+
+### Features
+
+* **search-client:** add support for angular v21 ([#52](https://github.com/sourcefuse/arc-ng-components/issues/52)) ([26486e8](https://github.com/sourcefuse/arc-ng-components/commit/26486e8c683f63e37b29e7a41bb9c806f9ffc90c)), closes [#50](https://github.com/sourcefuse/arc-ng-components/issues/50)
+
+
+### BREAKING CHANGES
+
+* **search-client:** YES
+
+## Description
+
+This pull request upgrades the Angular dependencies for the search
+module and related packages from Angular v20 to Angular v21. It also
+updates the deprecation notice in documentation to reflect this new
+support window.
+
+
+
+
+
 ## [9.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.0...@sourceloop/search-element@9.0.1) (2025-12-10)
 
 **Note:** Version bump only for package @sourceloop/search-element
