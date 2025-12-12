@@ -1,5 +1,5 @@
 /* MessagesComponent's private CSS styles */
-@import '../../variables.scss';
+@use '../../variables.scss' as *;
 h2 {
   color: $color-dark;
   font-family: Arial, Helvetica, sans-serif;

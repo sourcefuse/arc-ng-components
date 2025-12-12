@@ -1,5 +1,5 @@
 /* DashboardComponent's private CSS styles */
-@import '../../variables.scss';
+@use '../../variables.scss' as *;
 h2 {
   text-align: center;
 }

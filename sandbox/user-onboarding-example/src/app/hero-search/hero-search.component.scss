@@ -1,5 +1,5 @@
 /* HeroSearch private styles */
-@import '../../variables.scss';
+@use '../../variables.scss' as *;
 label {
   display: block;
   font-weight: bold;

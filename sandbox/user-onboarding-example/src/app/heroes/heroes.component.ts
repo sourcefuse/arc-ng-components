@@ -8,11 +8,15 @@ import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
 import {TourId} from '../tour.constant';
 import {TourService} from '../tour.service';
+import {CommonModule} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
+  imports: [CommonModule, RouterLink],
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];

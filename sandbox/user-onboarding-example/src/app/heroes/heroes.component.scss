@@ -1,5 +1,5 @@
 /* HeroesComponent's private CSS styles */
-@import '../../variables.scss';
+@use '../../variables.scss' as *;
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;

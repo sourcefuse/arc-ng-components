@@ -13,10 +13,6 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "styles": [
-            "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
-            "./node_modules/shepherd.js/dist/css/shepherd.css"
-          ],
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/user-onboarding-lib/tsconfig.lib.json",
@@ -103,7 +99,7 @@
     "extract-i18n": {
       "builder": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "UserOnboardingElement:build"
+        "buildTarget": "UserOnboardingElement:build"
       }
     },
     "test": {
