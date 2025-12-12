@@ -1,5 +1,5 @@
 /* HeroDetailComponent's private CSS styles */
-@import '../../variables.scss';
+@use '../../variables.scss' as *;
 label {
   color: $color-dark;
   font-weight: bold;
