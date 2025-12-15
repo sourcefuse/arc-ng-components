@@ -1,5 +1,6 @@
 /* AppComponent's private CSS styles */
-@import '../variables.scss';
+@use '../variables.scss' as *;
+
 h1 {
   margin-bottom: 0;
 }

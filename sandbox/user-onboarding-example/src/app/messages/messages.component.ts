@@ -5,11 +5,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../message.service';
 import {TourService} from '../tour.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
+  imports: [CommonModule],
 })
 export class MessagesComponent implements OnInit {
   constructor(

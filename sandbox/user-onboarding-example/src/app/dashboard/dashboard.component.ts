@@ -7,11 +7,16 @@ import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
 import {TourId} from '../tour.constant';
 import {TourService} from '../tour.service';
+import {HeroSearchComponent} from '../hero-search/hero-search.component';
+import {CommonModule} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  imports: [HeroSearchComponent, CommonModule, RouterLink],
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];

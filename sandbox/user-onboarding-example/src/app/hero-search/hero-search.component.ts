@@ -11,11 +11,15 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
 import {TourService} from '../tour.service';
+import {CommonModule} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.scss'],
+  imports: [CommonModule, RouterLink],
 })
 export class HeroSearchComponent implements OnInit {
   heroes$!: Observable<Hero[]>;
