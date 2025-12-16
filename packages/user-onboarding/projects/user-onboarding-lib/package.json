@@ -6,9 +6,9 @@
     "angular-library"
   ],
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/router": "^19.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/router": "^20.0.0",
     "@videogular/ngx-videogular": "^5.0.1",
     "ngx-webstorage-service": "^5.0.0",
     "rxjs": "~7.8.1",
@@ -17,7 +17,7 @@
   },
   "overrides": {
     "@videogular/ngx-videogular": {
-      "@angular/platform-browser-dynamic": "^19.0.0"
+      "@angular/platform-browser-dynamic": "^20.0.0"
     }
   },
   "scripts": {

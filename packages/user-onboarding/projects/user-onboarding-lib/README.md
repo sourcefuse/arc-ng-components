@@ -6,7 +6,7 @@ Microservice for providing a smooth user onboarding experience with the help of 
 
 ### Deprecation Notice
 
-User-Onboarding-client now supports Angular v19, we will provide support for the older version that is based on Angular v17 until 30th March 2026.
+User-Onboarding-client now supports Angular v20, we will provide support for the older version that is based on Angular v19 until 30th June 2026.
 
 ## Installation
 
