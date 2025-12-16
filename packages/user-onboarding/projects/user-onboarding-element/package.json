@@ -1,6 +1,6 @@
 {
   "name": "@sourceloop/user-onboarding-element",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Web Component for providing a smooth user onboarding",
   "keywords": [
     "web-component"
