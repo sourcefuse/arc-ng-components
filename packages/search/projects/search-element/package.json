@@ -1,6 +1,6 @@
 {
   "name": "@sourceloop/search-element",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "A global search element for search microservice. ",
   "main": "./search-element.js",
   "private": false,
@@ -19,5 +19,5 @@
   },
   "author": "Sourcefuse",
   "license": "MIT",
-  "hash": "98d63bcacdfabcc6d0176aeb9f75b054f1e610f96d3065040ccdcff6cd5c275c"
+  "hash": "046c911416e7350e4b96c2eff7d6bdf4b9c27db569ec74fedd5501c9a890ca86"
 }
