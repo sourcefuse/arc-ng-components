@@ -94,7 +94,7 @@
                 </ng-container>
               </ng-container>
               <p
-                *ngIf="!titleTemplate"
+                *ngIf="!titleTemplate()"
                 [innerHTML]="
                   boldString(
                     suggestion[cfg().displayPropertyName],
@@ -126,7 +126,7 @@
               <!--Need to call fetchModelImageUrlFromSuggestion as each suggestion can come from different model-->
               <img
                 *ngIf="
-                  !titleTemplate && fetchModelImageUrlFromSuggestion(suggestion)
+                  !titleTemplate() && fetchModelImageUrlFromSuggestion(suggestion)
                 "
                 class="suggestions-categorize-false"
                 [src]="fetchModelImageUrlFromSuggestion(suggestion)"
@@ -143,7 +143,7 @@
                 </ng-container>
               </ng-container>
               <p
-                *ngIf="!titleTemplate"
+                *ngIf="!titleTemplate()"
                 [innerHTML]="
                   boldString(
                     suggestion[cfg().displayPropertyName],
