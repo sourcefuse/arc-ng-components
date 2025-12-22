@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@8.0.1...@sourceloop/search-client@8.2.0) (2025-12-22)
+
+
+### Features
+
+* **search-client:** replace input output decorator technique with signals ([#60](https://github.com/sourcefuse/arc-ng-components/issues/60)) ([f55ced9](https://github.com/sourcefuse/arc-ng-components/commit/f55ced9d9b335ad75c7b1a2ad81e01b66f76f471)), closes [#59](https://github.com/sourcefuse/arc-ng-components/issues/59)
+* **search-client:** using signals instead of input and output decorator ([bc54ebf](https://github.com/sourcefuse/arc-ng-components/commit/bc54ebfb00b1919bf8b32ba67064d1b88154e2b0)), closes [#59](https://github.com/sourcefuse/arc-ng-components/issues/59)
+
+
+
+
+
 ## [8.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@8.0.0...@sourceloop/search-client@8.0.1) (2025-12-09)
 
 **Note:** Version bump only for package @sourceloop/search-client
