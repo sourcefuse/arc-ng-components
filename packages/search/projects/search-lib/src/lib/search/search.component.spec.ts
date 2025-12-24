@@ -30,21 +30,24 @@ describe('SearchComponent', () => {
   ]);
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SearchComponent],
+      imports: [SearchComponent],
       providers: [{provide: SEARCH_SERVICE_TOKEN, useValue: mockServiceSpy}],
     });
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
-    spyOnProperty(component, 'config', 'get').and.callFake(() => mockConfig);
+    fixture.componentRef.setInput('config', {
+      ...mockConfig,
+      models: [...mockConfig.models],
+    });
   });
   it('Should create component', () => {
     expect(fixture).toBeDefined();
     expect(component).toBeTruthy();
   });
   it('Should set the config', () => {
-    component.config = mockConfig;
-    expect(component['_config']).toEqual(mockConfig);
+    fixture.componentRef.setInput('config', mockConfig);
+    expect(component.config()).toEqual(mockConfig);
   });
   it('Should subscribe searchRequest$ and emit a response', () => {
     spyOn(component.searched, 'emit');
@@ -192,9 +195,8 @@ describe('SearchComponent', () => {
     expect(model).toEqual(mockIModel);
   });
   it('Should fetch Model ImageUrl From Suggestion', () => {
-    const returnUrl = component.fetchModelImageUrlFromSuggestion(
-      mockSuggestionUrl,
-    );
+    const returnUrl =
+      component.fetchModelImageUrlFromSuggestion(mockSuggestionUrl);
     expect(returnUrl).toEqual(url);
   });
   it('Should populate searched input value from the user', () => {
@@ -224,9 +226,8 @@ describe('SearchComponent', () => {
   });
   it('Should fetch Model ImageUrl From Suggestion', () => {
     const urlValue = undefined;
-    const returnUrl = component.fetchModelImageUrlFromSuggestion(
-      mockSuggestion,
-    );
+    const returnUrl =
+      component.fetchModelImageUrlFromSuggestion(mockSuggestion);
     expect(returnUrl).toEqual(urlValue);
   });
   it('Should get Models With Suggestions', () => {
@@ -234,19 +235,19 @@ describe('SearchComponent', () => {
     expect(result).toEqual([]);
   });
   it('Should not show toolbar search input', () => {
-    component.showOnlySearchResultOverlay = true;
+    fixture.componentRef.setInput('showOnlySearchResultOverlay', true);
     fixture.detectChanges();
     const result = fixture.debugElement.query(By.css('.toolbar-search'));
     expect(result).toBeNull();
   });
   it('Should show toolbar search input', () => {
-    component.showOnlySearchResultOverlay = false;
+    fixture.componentRef.setInput('showOnlySearchResultOverlay', false);
     fixture.detectChanges();
     const result = fixture.debugElement.query(By.css('.toolbar-search'));
     expect(result).toBeTruthy();
   });
   it('Should return [] when use custom all label', () => {
-    component.customAllLabel = 'Custom All Label';
+    fixture.componentRef.setInput('customAllLabel', 'Custom All Label');
     const result = component._categoryToSourceName('Custom All Label');
     expect(result).toEqual([]);
   });

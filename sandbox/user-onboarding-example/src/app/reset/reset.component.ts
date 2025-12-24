@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
 import {TourService} from '../tour.service';
 
 @Component({
+  standalone: true,
   selector: 'app-reset',
   templateUrl: './reset.component.html',
 })

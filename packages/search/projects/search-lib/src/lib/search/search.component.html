@@ -1,14 +1,18 @@
-<ng-container *ngIf="!showOnlySearchResultOverlay">
-  <div fxLayout fxLayoutAlign="start center" class="toolbar-search" *ngIf="config">
+<ng-container *ngIf="!showOnlySearchResultOverlay()">
+  <div
+    fxLayout
+    fxLayoutAlign="start center"
+    class="toolbar-search"
+    *ngIf="cfg()"
+  >
     <mat-form-field appearance="outline" class="toolbar-search-input">
       <input
         matInput
         autocomplete="off"
         type="text"
         [placeholder]="
-          config.placeholderFunction
-            ? config.placeholderFunction(searchInput.value, category)
-            : config.placeholder || 'Search'
+          cfg().placeholderFunction?.(searchInput.value, category)
+            ?? cfg().placeholder ?? 'Search'
         "
         #searchInput
         name="searchInput"
@@ -20,23 +24,26 @@
         (ngModelChange)="onChange(this.searchBoxInput)"
         [disabled]="disabled"
       />
-      <mat-icon matPrefix [className]="config.searchIconClass"></mat-icon>
+      <mat-icon matPrefix [className]="cfg().searchIconClass"></mat-icon>
       <mat-icon
         *ngIf="searchBoxInput"
         matSuffix
-        [className]="config.crossIconClass"
+        [className]="cfg().crossIconClass"
         (click)="resetInput()"
       ></mat-icon>
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline" class="toolbar-search-select">
-      <mat-icon matSuffix [className]="config.dropDownButtonIconClass"></mat-icon>
+      <mat-icon
+        matSuffix
+        [className]="cfg().dropDownButtonIconClass"
+      ></mat-icon>
       <mat-select
         [value]="category"
         (selectionChange)="setCategory($event.value)"
         panelClass="search-select"
       >
-        <mat-option [value]="model.name" *ngFor="let model of config.models">
+        <mat-option [value]="model.name" *ngFor="let model of cfg().models">
           {{ model.displayName }}
         </mat-option>
       </mat-select>
@@ -53,10 +60,10 @@
       <span *ngIf="suggestions.length === 0" class="search-message">
         <ng-container *ngIf="searching"> searching... </ng-container>
         <ng-container *ngIf="!searching">
-          {{ config.noResultMessage }}
+          {{ cfg().noResultMessage }}
         </ng-container>
       </span>
-      <ng-container *ngIf="config.categorizeResults && suggestions.length">
+      <ng-container *ngIf="cfg().categorizeResults && suggestions.length">
         <div
           class="search-result"
           *ngFor="let modelWithSuggestions of getModelsWithSuggestions()"
@@ -77,29 +84,29 @@
               (mousedown)="populateValue(suggestion, $event)"
               class="suggestions"
             >
-              <ng-container *ngIf="subtitleTemplate">
+              <ng-container *ngIf="subtitleTemplate()">
                 <ng-container
                   *ngTemplateOutlet="
-                    subtitleTemplate;
+                    subtitleTemplate();
                     context: {$implicit: suggestion}
                   "
                 >
                 </ng-container>
               </ng-container>
               <p
-                *ngIf="!titleTemplate"
+                *ngIf="!titleTemplate()"
                 [innerHTML]="
                   boldString(
-                    suggestion[config.displayPropertyName],
+                    suggestion[cfg().displayPropertyName],
                     searchBoxInput
                   )
                 "
                 style="display: inline"
               ></p>
-              <ng-container *ngIf="titleTemplate">
+              <ng-container *ngIf="titleTemplate()">
                 <ng-container
                   *ngTemplateOutlet="
-                    titleTemplate;
+                    titleTemplate();
                     context: {$implicit: suggestion}
                   "
                 >
@@ -109,7 +116,7 @@
           </ul>
         </div>
       </ng-container>
-      <ng-container *ngIf="!config.categorizeResults">
+      <ng-container *ngIf="!cfg().categorizeResults">
         <div class="search-result">
           <ul>
             <li
@@ -119,36 +126,37 @@
               <!--Need to call fetchModelImageUrlFromSuggestion as each suggestion can come from different model-->
               <img
                 *ngIf="
-                  !titleTemplate && fetchModelImageUrlFromSuggestion(suggestion)
+                  !titleTemplate() &&
+                  fetchModelImageUrlFromSuggestion(suggestion)
                 "
                 class="suggestions-categorize-false"
                 [src]="fetchModelImageUrlFromSuggestion(suggestion)"
                 style="margin-right: 5px"
                 alt="Img"
               />
-              <ng-container *ngIf="subtitleTemplate">
+              <ng-container *ngIf="subtitleTemplate()">
                 <ng-container
                   *ngTemplateOutlet="
-                    subtitleTemplate;
+                    subtitleTemplate();
                     context: {$implicit: suggestion}
                   "
                 >
                 </ng-container>
               </ng-container>
               <p
-                *ngIf="!titleTemplate"
+                *ngIf="!titleTemplate()"
                 [innerHTML]="
                   boldString(
-                    suggestion[config.displayPropertyName],
+                    suggestion[cfg().displayPropertyName],
                     searchBoxInput
                   )
                 "
                 style="display: inline"
               ></p>
-              <ng-container *ngIf="titleTemplate">
+              <ng-container *ngIf="titleTemplate()">
                 <ng-container
                   *ngTemplateOutlet="
-                    titleTemplate;
+                    titleTemplate();
                     context: {$implicit: suggestion}
                   "
                 >
@@ -160,7 +168,7 @@
       </ng-container>
     </ng-container>
 
-    <ng-container *ngIf="!config.hideRecentSearch && recentSearches.length > 0">
+    <ng-container *ngIf="!cfg().hideRecentSearch && recentSearches.length > 0">
       <div class="recent-searches">
         <h3 class="suggestions-heading">Recent Searches</h3>
         <ul>
@@ -171,7 +179,7 @@
           >
             <mat-icon
               matPrefix
-              [className]="config.recentSearchIconClass"
+              [className]="cfg().recentSearchIconClass"
             ></mat-icon>
 
             <span>&nbsp;{{ recentSearch.match }}</span>
