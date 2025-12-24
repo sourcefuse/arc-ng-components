@@ -25,14 +25,8 @@ jobs:
       - name: Install Monorepo Deps
         run: npm ci --ignore-scripts
 
-      - name: Install Lerna
-        run: npm i -g lerna@5.1.5 --ignore-scripts
-
-      - name: Bootstrap Monorepo
-        run: lerna bootstrap --ignore-scripts
-
       - name: Run Test Cases
-        run: npx lerna run test
+        run: npm run test --workspaces --if-present
 
       - name: Run Lint Checks
-        run: npx lerna run lint
+        run: npm run lint --workspaces --if-present
