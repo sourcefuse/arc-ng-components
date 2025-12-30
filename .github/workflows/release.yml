@@ -46,6 +46,6 @@ jobs:
         # "HUSKY=0" disables pre-commit-msg check (Needed in order to allow lerna perform the release commit)
         run: HUSKY=0 npx lerna version --yes --ci --conventional-commits
       - name: Publish to NPM 🚀
-        run: npm publish -ws
+        run: npx lerna publish from-package --yes
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
