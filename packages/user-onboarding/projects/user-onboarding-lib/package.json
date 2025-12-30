@@ -6,9 +6,9 @@
     "angular-library"
   ],
   "peerDependencies": {
-    "@angular/common": "^17.3.0",
-    "@angular/core": "^17.3.0",
-    "@angular/router": "^17.3.0",
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/router": "^21.0.0",
     "@videogular/ngx-videogular": "^5.0.1",
     "ngx-webstorage-service": "^5.0.0",
     "rxjs": "~7.8.1",
@@ -17,13 +17,10 @@
   },
   "overrides": {
     "@videogular/ngx-videogular": {
-      "@angular/platform-browser-dynamic": "^17.3.0"
+      "@angular/platform-browser-dynamic": "^21.0.0"
     }
   },
   "scripts": {
-    "checkIfNodeModulesExist": "[ -d \"../../node_modules\" ]",
-    "installNodeModules": "cd ../../ && npm i",
-    "prebuild": "npm run checkIfNodeModulesExist || npm run installNodeModules",
     "libraryBuild": "ng build userOnboardingLib && cp -r src/assets dist/assets",
     "elementBuild": "ng build user-onboarding-element",
     "postbuild": "node bundle-element.js",
@@ -33,7 +30,7 @@
     "test": "echo \"No tests available !\""
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.2.0"
   },
   "devDependencies": {
     "@types/core-js": "^2.5.4",

@@ -5,14 +5,15 @@
 import {
   ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   ElementRef,
-  EventEmitter,
   Inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
   Optional,
-  Output,
+  output,
   PLATFORM_ID,
   SimpleChanges,
   TemplateRef,
@@ -76,6 +77,30 @@ const ALL_LABEL = 'All';
 export class SearchComponent<T extends IReturnType>
   implements OnInit, OnDestroy, ControlValueAccessor
 {
+  readonly cfg = computed(() => {
+    const cfg = this.config();
+    if (!cfg) {
+      throw new Error('SearchComponent: config input is required');
+    }
+    return cfg;
+  });
+  config = input<Configuration<T>>();
+  searchProvider = input<ISearchService<T> | ISearchServiceWithPromises<T>>();
+
+  titleTemplate = input<TemplateRef<any> | undefined>();
+  subtitleTemplate = input<TemplateRef<any> | undefined>();
+
+  customAllLabel = input<string>(ALL_LABEL);
+  showOnlySearchResultOverlay = input<boolean>(false);
+
+  customSearchEvent = input<CustomSearchEvent>({
+    searchValue: '',
+    modelName: ALL_LABEL,
+  });
+
+  clicked = output<ItemClickedEvent<T>>();
+  searched = output<RecentSearchEvent>();
+
   searchBoxInput = '';
   suggestionsDisplay = false;
   categoryDisplay = false;
@@ -85,71 +110,7 @@ export class SearchComponent<T extends IReturnType>
   category: string = ALL_LABEL;
   searchRequest$ = new Subject<{input: string; event: Event}>();
 
-  private _config!: Configuration<T>;
-  public get config(): Configuration<T> {
-    return this._config;
-  }
-
-  @Input()
-  public set config(value: Configuration<T>) {
-    this._config = value;
-
-    if (value && value.models) {
-      value.models.unshift({
-        name: ALL_LABEL,
-        displayName: this.customAllLabel ?? ALL_LABEL,
-      });
-    } else if (value && !value.models) {
-      value.models = [
-        {
-          name: ALL_LABEL,
-          displayName: this.customAllLabel ?? ALL_LABEL,
-        },
-      ];
-    } else {
-      // do nothing
-    }
-  }
-
-  /* The above code is a setter method in a TypeScript class that takes a parameter `searchProvider` of
-type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
-  @Input()
-  public set searchProvider(
-    value: ISearchService<T> | ISearchServiceWithPromises<T>,
-  ) {
-    if (isApiServiceWithPromise(value)) {
-      value = this.promiseAdapter.adapt(value);
-    }
-    this.searchService = value;
-  }
-
-  public get searchProvider(): ISearchService<T> {
-    return this.searchService;
-  }
-
-  @Input() titleTemplate?: TemplateRef<any>;
-  @Input() subtitleTemplate?: TemplateRef<any>;
-  /**
-   * configure when application has own search input and use different all label
-   */
-  @Input() customAllLabel = ALL_LABEL;
-  /**
-   * configure to true when to show only search result overlay without search bar
-   */
-  @Input() showOnlySearchResultOverlay = false;
-  /**
-   * provide custom search event when showOnlySearchResultOverlay configure to true
-   */
-  @Input() customSearchEvent: CustomSearchEvent = {
-    searchValue: '',
-    modelName: this.customAllLabel,
-  };
-  // emitted when user clicks one of the suggested results (including recent search sugestions)
-  @Output() clicked = new EventEmitter<ItemClickedEvent<T>>();
-  @Output() searched = new EventEmitter<RecentSearchEvent>();
-  /* emitted when user makes search request (including recent search requests
-     & requests made on change in category from dropdown)
-  In case of recent search Array of recent Search request result is emitted */
+  private searchService!: ISearchService<T>;
 
   onChange: (value: string | undefined) => void = () => {};
   onTouched: () => void = () => {};
@@ -160,13 +121,60 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   constructor(
     @Inject(SEARCH_SERVICE_TOKEN)
     @Optional()
-    private searchService: ISearchService<T>,
+    searchService: ISearchService<T>,
     // tslint:disable-next-line:ban-types
     @Inject(PLATFORM_ID)
     private readonly platformId: Object,
     private readonly cdr: ChangeDetectorRef,
     private readonly promiseAdapter: PromiseApiAdapterService<T>,
-  ) {}
+  ) {
+    if (searchService) {
+      this.searchService = searchService;
+    }
+
+    effect(() => {
+      const cfg = this.config();
+      if (!cfg) return;
+
+      if (cfg.models) {
+        cfg.models.unshift({
+          name: ALL_LABEL,
+          displayName: this.customAllLabel(),
+        });
+      } else {
+        cfg.models = [
+          {
+            name: ALL_LABEL,
+            displayName: this.customAllLabel(),
+          },
+        ];
+      }
+    });
+
+    effect(() => {
+      let provider = this.searchProvider();
+      if (!provider) return;
+
+      if (isApiServiceWithPromise(provider)) {
+        provider = this.promiseAdapter.adapt(provider);
+      }
+      this.searchService = provider;
+    });
+
+    effect(() => {
+      const event = this.customSearchEvent();
+      if (!event) return;
+
+      if (event.searchValue !== undefined) {
+        this.searchBoxInput = event.searchValue;
+        this.searchOnCustomEventValueChange(this.searchBoxInput);
+      }
+
+      if (event.modelName) {
+        this.setCategory(event.modelName);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.searchRequest$
@@ -201,16 +209,19 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   }
 
   getSuggestions(eventValue: TypeEvent) {
+    const cfg = this.config();
+    if (!cfg) return;
     eventValue.input = eventValue.input.trim();
     if (!eventValue.input.length) {
       return;
     }
-    const order = this.config.order ?? DEFAULT_ORDER;
-    let orderString = '';
-    order.forEach(preference => (orderString = `${orderString}${preference} `));
+    const order = cfg.order ?? DEFAULT_ORDER;
+    const orderString = order.join(' ');
+    // let orderString = '';
+    // order.forEach(preference => (orderString = `${orderString}${preference} `));
 
-    let saveInRecents = this.config.saveInRecents ?? DEFAULT_SAVE_IN_RECENTS;
-    if (this.config.saveInRecents && this.config.saveInRecentsOnlyOnEnter) {
+    let saveInRecents = cfg.saveInRecents ?? DEFAULT_SAVE_IN_RECENTS;
+    if (cfg.saveInRecents && cfg.saveInRecentsOnlyOnEnter) {
       if (
         !eventValue.event ||
         (eventValue.event instanceof KeyboardEvent &&
@@ -222,16 +233,13 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
         saveInRecents = false;
       }
     }
-    /* need to put default value here and not in contructor
-    because sonar was giving code smell with definite assertion as all these
-     parameters are optional */
     const requestParameters: ISearchQuery = {
       match: eventValue.input,
       sources: this._categoryToSourceName(this.category),
-      limit: this.config.limit ?? DEFAULT_LIMIT,
-      limitByType: this.config.limitByType ?? DEFAULT_LIMIT_TYPE,
+      limit: cfg.limit ?? DEFAULT_LIMIT,
+      limitByType: cfg.limitByType ?? DEFAULT_LIMIT_TYPE,
       order: orderString,
-      offset: this.config.offset ?? DEFAULT_OFFSET,
+      offset: cfg.offset ?? DEFAULT_OFFSET,
     };
 
     this.searching = true;
@@ -252,29 +260,25 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
       );
   }
   getRecentSearches() {
-    if (
-      !this.config.hideRecentSearch &&
-      this.searchService.recentSearchApiRequest
-    ) {
-      this.searchService.recentSearchApiRequest().subscribe(
-        (value: ISearchQuery[]) => {
-          this.recentSearches = value;
-          this.cdr.markForCheck();
-        },
-        (_error: Error) => {
-          this.recentSearches = [];
-          this.cdr.markForCheck();
-        },
-      );
-    }
+    const cfg = this.config();
+    if (!cfg || cfg.hideRecentSearch) return;
+    this.searchService.recentSearchApiRequest?.().subscribe(
+      (value: ISearchQuery[]) => {
+        this.recentSearches = value;
+        this.cdr.markForCheck();
+      },
+      (_error: Error) => {
+        this.recentSearches = [];
+        this.cdr.markForCheck();
+      },
+    );
   }
-
-  //event can be KeyBoardEvent or Event of type 'change'
-  // fired on change in value of drop down for category
 
   hitSearchApi(event?: Event) {
     // this will happen only in case user searches something and
     // then erases it, we need to update recent search
+    const cfg = this.config();
+    if (!cfg) return;
     if (!this.searchBoxInput) {
       this.suggestions = [];
       this.getRecentSearches();
@@ -282,7 +286,7 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
     }
 
     // no debounce time needed in case of searchOnlyOnEnter
-    if (this.config.searchOnlyOnEnter) {
+    if (cfg.searchOnlyOnEnter) {
       if (!event || (event instanceof KeyboardEvent && event.key === 'Enter')) {
         this.getSuggestions({input: this.searchBoxInput, event});
       }
@@ -302,11 +306,11 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   }
 
   populateValue(suggestion: T, event: MouseEvent) {
-    const value = suggestion[
-      this.config.displayPropertyName
-    ] as unknown as string;
+    const cfg = this.config();
+    if (!cfg) return;
+    this.searchBoxInput = String(suggestion[cfg.displayPropertyName]);
     // converted to string to assign value to searchBoxInput
-    this.searchBoxInput = value;
+    // this.searchBoxInput = value;
     this.suggestionsDisplay = false;
     // ngModelChange doesn't detect change in value
     // when populated from outside, hence calling manually
@@ -335,7 +339,7 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
       'source' as unknown as keyof T
     ] as unknown as string;
     let url: string | undefined;
-    this.config.models.forEach(model => {
+    this.config()?.models.forEach(model => {
       if (model.name === modelName && model.imageUrl) {
         url = model.imageUrl;
       }
@@ -362,7 +366,7 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   focusInput() {
     if (
       isPlatformBrowser(this.platformId) &&
-      !this.showOnlySearchResultOverlay
+      !this.showOnlySearchResultOverlay()
     ) {
       this.searchInputElement.nativeElement.focus();
     }
@@ -401,14 +405,14 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
   }
 
   _categoryToSourceName(category: string) {
-    if ([ALL_LABEL, this.customAllLabel].includes(category)) {
+    if ([ALL_LABEL, this.customAllLabel()].includes(category)) {
       return [];
     } else {
       return [category];
     }
   }
   getModelFromModelName(name: string) {
-    return this.config.models.find(item => item.name === name) as IModel;
+    return this.config()?.models.find(item => item.name === name) as IModel;
   }
   getModelsWithSuggestions() {
     const modelsWithSuggestions: {model: IModel; items: T[]}[] = [];
@@ -429,21 +433,6 @@ type `ISearchService<T>` or `ISearchServiceWithPromises<T>`. */
       }
     });
     return modelsWithSuggestions;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.customSearchEvent) {
-      if (this._isCustomSearchEventChange(changes, 'searchValue')) {
-        this.searchBoxInput = this.customSearchEvent?.searchValue ?? '';
-        this.searchOnCustomEventValueChange(this.searchBoxInput);
-      }
-      if (
-        this._isCustomSearchEventChange(changes, 'modelName') &&
-        this.customSearchEvent?.modelName
-      ) {
-        this.setCategory(this.customSearchEvent?.modelName);
-      }
-    }
   }
 
   searchOnCustomEventValueChange(value: string) {
