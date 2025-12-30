@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@7.0.0...@sourceloop/user-onboarding-element@9.0.1) (2025-12-30)
+
+### Bug Fixes
+
+- **ci-cd:** update version to publish ([3e39383](https://github.com/sourcefuse/arc-ng-components/commit/3e3938339bef71bfc1a85421e78d48456faedb8f)), closes [#00](https://github.com/sourcefuse/arc-ng-components/issues/00)
+
 # [7.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@5.1.1...@sourceloop/user-onboarding-element@7.0.0) (2025-12-30)
 
 ### chore
