@@ -4,9 +4,32 @@
 
 Microservice for providing a smooth user onboarding experience with the help of step by step application specific tours.
 
-### Deprecation Notice
+### Angular Version Compatibility
 
-User-Onboarding-client now supports Angular v17, we will provide support for the older version that is based on Angular v14 until 30th July 2025.
+To ensure smooth integration, install the User-Onboarding-Client version that corresponds to your Angular version:
+
+<table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; text-align: left;">
+  <thead>
+    <tr>
+      <th>Angular Version</th>
+      <th>Compatible User-Onboarding-Client Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Angular v19</td>
+      <td>@sourceloop/user-onboarding-client v7.x</td>
+    </tr>
+    <tr>
+      <td>Angular v20</td>
+      <td>@sourceloop/user-onboarding-client v8.x</td>
+    </tr>
+    <tr>
+      <td>Angular v21+</td>
+      <td>Latest version (v9.x and above)</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Installation
 
