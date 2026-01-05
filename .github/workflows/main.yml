@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [search-v20]
   pull_request:
-    branches: [master]
+    branches: [search-v20]
 
 # This workflow contains a single job called "npm_audit"
 jobs:
@@ -24,12 +24,6 @@ jobs:
 
       - name: Install Monorepo Deps
         run: npm ci --ignore-scripts
-
-      - name: Install Lerna
-        run: npm i -g lerna@5.1.5 --ignore-scripts
-
-      - name: Bootstrap Monorepo
-        run: lerna bootstrap --ignore-scripts
 
       - name: Run Test Cases
         run: npx lerna run test
