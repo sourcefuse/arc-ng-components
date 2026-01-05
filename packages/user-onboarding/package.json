@@ -32,7 +32,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@videogular/ngx-videogular": "^5.0.1",
+    "@videogular/ngx-videogular": "^20.0.0",
     "json-server": "^0.17.0",
     "ngx-webstorage-service": "^5.0.0",
     "prettier": "^2.6.2",
