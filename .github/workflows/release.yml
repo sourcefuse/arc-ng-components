@@ -37,11 +37,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_USERNAME: ${{ vars.NPM_USERNAME }}
 
-      - name: Bootstrap
+      - name: Install Dependencies
         run: |
           npm ci --ignore-scripts
-          npm i -g lerna@5.1.5 --ignore-scripts
-          lerna bootstrap --ignore-scripts
       - name: Test
         run: npx lerna run test
       - name: Stash Changes

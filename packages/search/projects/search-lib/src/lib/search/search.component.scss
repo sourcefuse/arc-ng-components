@@ -8,6 +8,12 @@ $search-width: 86%;
     }
   }
 }
+.toolbar-search {
+  display: flex;
+  flex-direction: row;          /* default, but explicit */
+  align-items: center;          /* fxLayoutAlign: center (cross axis) */
+  justify-content: flex-start;  /* fxLayoutAlign: start (main axis) */
+}
 
 .toolbar-search-input {
   width: $search-width;
