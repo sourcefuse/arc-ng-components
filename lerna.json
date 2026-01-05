@@ -10,6 +10,13 @@
       "conventionalCommits": true,
       "message": "chore(release): publish"
     },
+    "publish": {
+      "conventionalCommits": true,
+      "message": "chore: publish release",
+      "allowBranch": ["master", "search-v20"],
+      "noPrivate": true,
+      "graphType": "all"
+    },
     "run": {
       "concurrency": 3,
       "ignore": [
