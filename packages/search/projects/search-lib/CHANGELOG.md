@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.2](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.1...@sourceloop/search-client@9.0.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* **sandbox:** version upgrade ([ca924ed](https://github.com/sourcefuse/arc-ng-components/commit/ca924edbaf68c53675728c8edad8d1c60f299013))
+
+
+
+
+
 ## [9.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.0...@sourceloop/search-client@9.0.1) (2025-12-10)
 
 **Note:** Version bump only for package @sourceloop/search-client
