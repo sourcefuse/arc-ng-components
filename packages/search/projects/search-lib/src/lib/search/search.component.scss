@@ -1,32 +1,43 @@
 $search-width: 86%;
 
+// Color Variables
+$search-background: #f7f7f7;
+$search-input-background: #f1f3f4;
+$search-border-hover: #a53159;
+$search-border-focus: #90003b;
+$search-highlight-bg: #fee8e8;
+$search-heading-color: #9c9c9c;
+$search-text-color: #333;
+$search-icon-color: #33333380;
+
 :host {
-  ::ng-deep .mat-form-field-wrapper {
+  ::ng-deep .mat-mdc-form-field {
     padding: 0;
-    .mat-form-field-prefix {
-      margin-right: 12px;
+    .mat-mdc-form-field-icon-prefix {
+      padding-left: 12px;
+      padding-right: 8px;
+    }
+    .mat-mdc-form-field-icon-suffix {
+      padding-left: 8px;
+      padding-right: 12px;
+    }
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
     }
   }
 }
-.toolbar-search {
-  display: flex;
-  flex-direction: row;          /* default, but explicit */
-  align-items: center;          /* fxLayoutAlign: center (cross axis) */
-  justify-content: flex-start;  /* fxLayoutAlign: start (main axis) */
-}
-
 .toolbar-search-input {
   width: $search-width;
   ::ng-deep input {
     margin: 0;
   }
   ::ng-deep {
-    .mat-form-field-flex {
-      .mat-form-field-outline:first-child {
-        .mat-form-field-outline-start {
+    .mat-mdc-text-field-wrapper {
+      .mat-mdc-notched-outline:first-child {
+        .mat-mdc-notched-outline__leading {
           border-color: transparent;
         }
-        .mat-form-field-outline-end {
+        .mat-mdc-notched-outline__trailing {
           border: none;
           border-radius: 0;
         }
@@ -40,42 +51,49 @@ $search-width: 86%;
     height: 1rem;
     width: 1rem;
     font-size: 1rem;
-    color: #33333380;
+    color: $search-icon-color;
     padding-bottom: 4px;
   }
   &.close {
     cursor: pointer;
   }
 }
-
 .toolbar-search-select {
   width: calc(100% - #{$search-width});
-  ::ng-deep .mat-select-arrow {
+  ::ng-deep .mat-mdc-select-arrow {
     opacity: 0;
   }
   ::ng-deep {
-    .mat-select-arrow-wrapper {
+    .mat-mdc-select-arrow-wrapper {
       display: inline-block;
       width: 1px;
     }
-    .mat-select-value-text {
-      font-size: 9px;
+    .mat-mdc-select-value-text {
+      font-size: 13px;
+      line-height: 1.2;
+      color: white;
     }
-    .mat-form-field-suffix .mat-icon {
+    .mat-mdc-select {
+      color: white;
+    }
+    .mat-mdc-form-field-text-suffix .mat-icon {
       width: 12px;
       font-size: 14px;
+      color: white;
     }
-    .mat-form-field-flex {
-      .mat-form-field-outline:first-child {
-        .mat-form-field-outline-start {
-          border-color: transparent;
+    .mat-mdc-text-field-wrapper {
+      .mat-mdc-notched-outline:first-child {
+        .mat-mdc-notched-outline__leading {
           border-radius: 0;
+          border-color: transparent;
+          background-color: $search-border-focus;
         }
-        .mat-form-field-outline-end {
+        .mat-mdc-notched-outline__trailing {
           border: none;
+          background-color: $search-border-focus;
         }
       }
-      .mat-form-field-infix {
+      .mat-mdc-form-field-infix {
         //chrome specific only.
         -webkit-padding-before: 0.7em ;
       }
@@ -83,30 +101,32 @@ $search-width: 86%;
   }
 }
 .toolbar-search {
-  width: 515px;
-  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 515px;
+  background-color: $search-background;
   border-radius: 0 0 4px 4px;
-
   ::ng-deep {
-    .mat-form-field-appearance-outline .mat-form-field-flex {
+    .mat-mdc-form-field .mat-mdc-text-field-wrapper {
       height: 39px;
       align-items: center ;
     }
-
-    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    .mat-mdc-form-field {
       margin: 0;
     }
   }
-
-  ::ng-deep .mat-form-field-infix {
-    height: auto ;
+  ::ng-deep .mat-mdc-form-field-infix {
+    min-height: 36px;
+    padding: 8px 0;
   }
 }
-
 .search-container {
   position: relative;
-  width: 515px;
-
+  width: 100%;
+  max-width: 515px;
   .search-popup {
     padding: 0 15px 15px;
     margin: 0;
@@ -147,14 +167,12 @@ $search-width: 86%;
     ul {
       padding: 0;
       margin: 0;
-
       li {
         list-style: none;
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
-        color: #333;
-
+        color: $search-text-color;
         &.suggestions {
           font-size: 15px;
           line-height: 36px;
@@ -165,31 +183,32 @@ $search-width: 86%;
           overflow: hidden;
           text-overflow: ellipsis;
           cursor: pointer;
-
           &:hover {
-            background-color: #fee8e8;
+            background-color: $search-highlight-bg;
           }
-
           svg {
             margin-right: 5px;
           }
         }
-
         &.suggestions-categorize-false:hover {
-          background-color: #fee8e8;
+          background-color: $search-highlight-bg;
         }
       }
+    }
+    .inline-display {
+      display: inline;
+    }
+    .suggestion-image {
+      margin-right: 5px;
     }
     .search-result {
       padding: 10px 0 0;
       margin: 0 -15px;
-
       &.no-categorize-result {
         ul {
           width: 100%;
           padding: 0;
           margin: 0 0 10px;
-
           li {
             font-size: 15px;
             line-height: 36px;
@@ -197,11 +216,9 @@ $search-width: 86%;
             display: flex;
             align-items: center;
             cursor: pointer;
-
             &:hover {
-              background-color: #fee8e8;
+              background-color: $search-highlight-bg;
             }
-
             img {
               width: 18px;
               margin-right: 9px;
@@ -211,14 +228,13 @@ $search-width: 86%;
       }
     }
     .suggestions-heading {
-      color: #9c9c9c;
+      color: $search-heading-color;
       font-size: 14px;
       font-weight: normal;
       margin: 0 0 10px 17px;
       display: flex;
       align-items: center;
       position: relative;
-
       .show-more {
         position: absolute;
         right: 20px;
@@ -226,7 +242,6 @@ $search-width: 86%;
         font-size: 12px;
         cursor: pointer;
         text-decoration: none;
-
         :hover {
           text-decoration: underline;
         }
@@ -239,7 +254,6 @@ $search-width: 86%;
     .recent-searches {
       padding: 10px 0 0;
       margin: 0 -15px;
-
       ul {
         display: inline-block;
         width: 100%;
@@ -252,11 +266,9 @@ $search-width: 86%;
           }
         }
       }
-
       .suggestions {
         display: flex;
       }
-
       .suggestions-heading {
         margin-left: 30px;
       }
@@ -266,16 +278,15 @@ $search-width: 86%;
     }
   }
 }
-
 @mixin toolbar-search-mixin($width, $color) {
   .toolbar-search-input {
-    &.mat-form-field:not(.mat-form-field-disabled) {
-      .mat-form-field-outline {
-        .mat-form-field-outline-start {
+    &.mat-mdc-form-field:not(.mat-form-field-disabled) {
+      .mat-mdc-notched-outline {
+        .mat-mdc-notched-outline__leading {
           border-width: $width ;
           border-color: $color ;
         }
-        .mat-form-field-outline-end {
+        .mat-mdc-notched-outline__trailing {
           border: $width solid $color ;
           border-left-style: none ;
           border-right-style: none ;
@@ -286,20 +297,20 @@ $search-width: 86%;
     }
   }
   .toolbar-search-select {
-    &.mat-form-field:not(.mat-form-field-disabled) {
-      .mat-form-field-outline {
-        .mat-form-field-outline-start {
+    &.mat-mdc-form-field:not(.mat-form-field-disabled) {
+      .mat-mdc-notched-outline {
+        .mat-mdc-notched-outline__leading {
           border-radius: 0;
           border-color: transparent ;
           background-color: $color ;
         }
-        .mat-form-field-outline-end {
+        .mat-mdc-notched-outline__trailing {
           border-width: $width ;
           border-color: $color ;
           background-color: $color ;
         }
       }
-      .mat-select {
+      .mat-mdc-select {
         color: white ;
       }
       .icomoon.arrow_down {
@@ -308,37 +319,50 @@ $search-width: 86%;
     }
   }
 }
-
 ::ng-deep {
-  .search-select.mat-select-panel {
+  .search-select.mat-mdc-select-panel {
     margin-top: 30px;
     margin-left: 10px;
   }
-  .search-select .mat-option-text {
+  .search-select .mat-mdc-option .mdc-list-item__primary-text {
     display: contents ;
   }
   .toolbar-search {
     $size: 14px;
-    .mat-form-field-infix {
+    .mat-mdc-form-field-infix {
       font-size: $size;
     }
     input {
       line-height: $size;
     }
-    .mat-form-field-outline:first-child {
-      .mat-form-field-outline-start,
-      .mat-form-field-outline-end {
-        background-color: #f1f3f4;
+    .mat-mdc-notched-outline:first-child {
+      .mat-mdc-notched-outline__leading,
+      .mat-mdc-notched-outline__trailing {
+        background-color: $search-input-background;
       }
     }
     // Hover
-    &:hover {
-      @include toolbar-search-mixin(1px, #a53159);
+    &:hover:not(:focus-within) {
+      .toolbar-search-input.mat-mdc-form-field:not(.mat-form-field-disabled) {
+        .mat-mdc-notched-outline {
+          .mat-mdc-notched-outline__leading {
+            border-width: 1px;
+            border-color: $search-border-hover;
+          }
+          .mat-mdc-notched-outline__trailing {
+            border: 1px solid $search-border-hover;
+            border-left-style: none;
+            border-right-style: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
     }
     &:focus-within {
-      @include toolbar-search-mixin(2px, #90003b);
+      @include toolbar-search-mixin(2px, $search-border-focus);
     }
-    .mat-select-arrow {
+    .mat-mdc-select-arrow {
       opacity: 0;
     }
   }

@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "build:search": "cd packages/search && npx ng build search-lib",
+    "link:search": "npm run build:search && cd packages/search/projects/search-lib/dist && npm link && cd ../../../../sandbox/search-client-example && npm link @sourceloop/search-client",
+    "watch:search": "cd packages/search && npx ng build search-lib --watch",
+    "start:search-sandbox": "cd sandbox/search-client-example && npm start"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
