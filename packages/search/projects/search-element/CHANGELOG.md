@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.2](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.1...@sourceloop/search-element@9.0.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* **search-client:** remove the flex layout dependency ([#74](https://github.com/sourcefuse/arc-ng-components/issues/74)) ([63e8a77](https://github.com/sourcefuse/arc-ng-components/commit/63e8a77182e037ab7a35aa7952ecf47c6841960f)), closes [#00](https://github.com/sourcefuse/arc-ng-components/issues/00)
+
+
+
+
+
 ## [9.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.0...@sourceloop/search-element@9.0.1) (2025-12-10)
 
 **Note:** Version bump only for package @sourceloop/search-element
