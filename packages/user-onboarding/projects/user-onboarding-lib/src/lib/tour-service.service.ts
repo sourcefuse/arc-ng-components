@@ -62,6 +62,10 @@ export class TourServiceService {
     }
   }
 
+  /**
+   * This function returns the value of the `_maxWaitTime` property.
+   * @returns The method `getMaxWaitTime()` is returning the value of the `_maxWaitTime` property.
+   */
   public get maxWaitTime() {
     return this._maxWaitTime;
   }
