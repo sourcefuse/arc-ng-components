@@ -44,7 +44,6 @@
     "@angular/cdk": "^20.0.3",
     "@angular/cli": "^20.0.3",
     "@angular/compiler-cli": "^20.0.3",
-    "@angular/flex-layout": "~15.0.0-beta.42",
     "@angular/material": "^20.0.3",
     "@types/fs-extra": "^11.0.1",
     "@types/jasmine": "~3.8.0",
