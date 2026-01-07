@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [user-onboarding-v20]
   pull_request:
-    branches: [master]
+    branches: [user-onboarding-v20]
 
 # This workflow contains a single job called "npm_audit"
 jobs:
@@ -22,14 +22,11 @@ jobs:
       - run: node --version
       - run: npm --version
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
-
       - name: Install Monorepo Deps
         run: npm ci --ignore-scripts
 
       - name: Run Test Cases
-        run: npm run test --workspaces --if-present
+        run: npx lerna run test
 
       - name: Run Lint Checks
-        run: npm run lint --workspaces --if-present
+        run: npx lerna run lint

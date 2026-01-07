@@ -24,4 +24,4 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Run test
-        run: npm run test --workspaces --if-present
+        run: npx lerna run test

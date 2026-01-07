@@ -1,12 +1,19 @@
 {
-  "packages": [ 
-  "packages/user-onboarding/projects/user-onboarding-lib",
-  "packages/user-onboarding/projects/user-onboarding-element"
-],
+  "packages": [
+    "packages/user-onboarding/projects/user-onboarding-lib",
+    "packages/user-onboarding/projects/user-onboarding-element"
+  ],
   "command": {
     "version": {
       "conventionalCommits": true,
       "message": "chore(release): publish"
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "message": "chore: publish release",
+      "allowBranch": "user-onboarding-v20",
+      "noPrivate": true,
+      "graphType": "all"
     },
     "run": {
       "concurrency": 3,
@@ -26,10 +33,6 @@
       "yes": true
     }
   },
-  "ignoreChanges": [
-    "**/__fixtures__/**",
-    "**/__tests__/**",
-    "**/*.md"
-  ],
+  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
   "version": "independent"
 }

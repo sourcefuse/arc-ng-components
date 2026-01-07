@@ -19,7 +19,8 @@
     "module": "es6",
     "lib": ["es2018","dom"],
     "paths": {"user-onboarding-lib": ["dist"]},
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
