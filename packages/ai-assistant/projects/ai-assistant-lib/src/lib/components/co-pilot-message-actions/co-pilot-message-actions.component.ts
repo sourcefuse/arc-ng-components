@@ -15,6 +15,7 @@ import {CoPilotDownvoteComponent} from '../co-pilot-downvote/co-pilot-downvote.c
 import {Integers} from '../../enums/numbers.enum';
 import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {LocalizationProviderService} from '../../services';
+import { DeepChatFacadeService } from '../../facades';
 
 @Component({
   selector: CoPilotMessageActions,
@@ -30,6 +31,7 @@ export class CoPilotMessageActionsComponent {
   constructor(
     private readonly clipboard: Clipboard,
     private readonly localizationSvc: LocalizationProviderService,
+    private readonly deepChatFacadeSvc: DeepChatFacadeService,
   ) {}
 
   @Input() copy: string;
@@ -37,6 +39,10 @@ export class CoPilotMessageActionsComponent {
   @Input() question: string;
 
   @Input() answer: string;
+
+  @Input() deletefeedbackurl: string;
+  @Input() savefeedbackurl: string;
+  @Input() updatefeedbackurl: string;
 
   @ViewChild('tooltip', {static: true}) tooltip: MatTooltip;
 
@@ -183,31 +189,113 @@ export class CoPilotMessageActionsComponent {
   }
 
   handleUpvoteAction(feedback: UserFeedback): void {
-    // user implement it
-
-    this.disableClick = false;
+    if (
+      this.currentFeedbackId &&
+      !this.answerUpvoted &&
+      !this.answerDownvoted
+    ) {
+      // we can de-register response also
+      this.deepChatFacadeSvc.deleteFeedback(this.currentFeedbackId, this.deletefeedbackurl).subscribe({
+        next: () => {
+          this.currentFeedbackId = null;
+          this.disableClick = false;
+        },
+        error: () => {
+          this.disableClick = false;
+        },
+      });
+    } else if (
+      this.currentFeedbackId &&
+      this.answerUpvoted &&
+      !this.answerDownvoted
+    ) {
+      this.updateFeedbackAndCloseDownvotePane(feedback);
+    } else {
+      this.saveFeedback(feedback);
+    }
   }
 
   handleDownvoteAction(feedback: UserFeedback): void {
-    // user implement it
-
-    this.disableClick = false;
+    if (
+      this.currentFeedbackId &&
+      !this.answerUpvoted &&
+      !this.answerDownvoted
+    ) {
+      // we can de-register response also
+      this.deepChatFacadeSvc.deleteFeedback(this.currentFeedbackId, this.deletefeedbackurl).subscribe({
+        next: () => {
+          this.closeDownvotePane();
+          this.currentFeedbackId = null;
+          this.disableClick = false;
+        },
+        error: () => {
+          this.disableClick = false;
+        },
+      });
+    } else if (
+      this.currentFeedbackId &&
+      this.answerDownvoted &&
+      !this.answerUpvoted
+    ) {
+      this.deepChatFacadeSvc
+        .updateFeedback(this.currentFeedbackId, feedback, this.updatefeedbackurl)
+        .subscribe({
+          next: () => {
+            this.disableClick = false;
+          },
+          error: () => {
+            this.disableClick = false;
+          },
+        });
+    } else {
+      this.saveFeedback(feedback);
+    }
   }
 
   handleDownvoteWithReasonAction(feedback: UserFeedback): void {
-    // user implement it
-
-    this.disableClick = false;
+    if (this.currentFeedbackId) {
+      this.deepChatFacadeSvc
+        .updateFeedback(this.currentFeedbackId, feedback, this.updatefeedbackurl)
+        .subscribe({
+          next: () => {
+            this.closeDownvotePane();
+            this.disableClick = false;
+          },
+          error: () => {
+            this.disableClick = false;
+          },
+        });
+    }
   }
 
   updateFeedbackAndCloseDownvotePane(feedback: UserFeedback): void {
-    // user implement it
-
-    this.disableClick = false;
+    this.deepChatFacadeSvc
+      .updateFeedback(this.currentFeedbackId, {
+        ...feedback,
+        customReason: '',
+        reason: '' as unknown as ReasonEnum,
+      }, this.updatefeedbackurl)
+      .subscribe({
+        next: () => {
+          this.closeDownvotePane();
+          this.disableClick = false;
+        },
+        error: () => {
+          this.disableClick = false;
+        },
+      });
   }
 
   saveFeedback(feedback: UserFeedback): void {
-    // user implement it
+    this.deepChatFacadeSvc.saveFeedBack(feedback, this.savefeedbackurl).subscribe({
+      next: response => {
+        this.currentFeedbackId = response.id;
+        this.disableClick = false;
+      },
+      error: () => {
+        this.disableClick = false;
+      },
+    });
   }
 
   handleDownvoteFeedback(feedback: UserFeedback): void {
@@ -221,6 +309,7 @@ export class CoPilotMessageActionsComponent {
   openDownvotePane() {
     this.triggerDownvotePane = true;
   }
+
 
   initTooltipContainer(tooltipContDetails: {
     tooltipContainer: HTMLElement;

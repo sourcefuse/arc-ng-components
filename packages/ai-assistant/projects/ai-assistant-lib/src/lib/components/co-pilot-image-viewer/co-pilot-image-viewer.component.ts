@@ -12,6 +12,9 @@ import {
   TOP_BOTTOM_MARGIN_TOTAL,
 } from '../../constants';
 import {Integers} from '../../enums/numbers.enum';
+import { DownloadService } from '../../services';
+import { DeepChatFacadeService } from '../../facades';
+import { take } from 'rxjs';
 @Component({
   selector: CoPilotImageViewer,
   templateUrl: './co-pilot-image-viewer.component.html',
@@ -20,6 +23,8 @@ import {Integers} from '../../enums/numbers.enum';
 })
 export class CoPilotImageViewerComponent {
   constructor(
+    private readonly downloadService: DownloadService,
+    private readonly deepChatFacadeSvc: DeepChatFacadeService,
     protected readonly dialogRef: MatDialogRef<CoPilotImageViewerComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
   ) {}
@@ -81,7 +86,14 @@ export class CoPilotImageViewerComponent {
   }
 
   downloadImage() {
-    // write your own download logic
+    this.deepChatFacadeSvc
+      .downloadAIFile(this.currentFileKey, this.data?.downloadUrl)
+      .pipe(take(1))
+      .subscribe({
+        next: blob => {
+          this.downloadService.downloadByBlob(blob, this.currentFileKey);
+        },
+      });
   }
 
   imageLoaded() {
