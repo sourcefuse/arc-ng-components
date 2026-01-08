@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.2](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@9.0.0...@sourceloop/user-onboarding-element@8.0.2) (2026-01-08)
+
+
+### Bug Fixes
+
+* **user-onboarding:** update the version for angularv20 the lib should be at major v8 ([5591725](https://github.com/sourcefuse/arc-ng-components/commit/5591725ad61c5023bc28ced1f7d770139d8d133e)), closes [#00](https://github.com/sourcefuse/arc-ng-components/issues/00)
+
+
+
+
+
 # [9.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@5.1.1...@sourceloop/user-onboarding-element@9.0.0) (2026-01-08)
 
 
