@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-client@5.1.1...@sourceloop/user-onboarding-client@9.0.0) (2026-01-08)
+
+
+### chore
+
+* **deps:** standardize angular version to >=17 ([#33](https://github.com/sourcefuse/arc-ng-components/issues/33)) ([8d34355](https://github.com/sourcefuse/arc-ng-components/commit/8d34355ca619fa18537884155f106d844ef18983))
+
+
+### Features
+
+* **user-onboarding:** add support for angular v19 ([#56](https://github.com/sourcefuse/arc-ng-components/issues/56)) ([22d81fe](https://github.com/sourcefuse/arc-ng-components/commit/22d81feea7e83b0d7e749bc70593ca32f2b379c3)), closes [#53](https://github.com/sourcefuse/arc-ng-components/issues/53)
+* **user-onboarding:** add support for angular v20 ([#58](https://github.com/sourcefuse/arc-ng-components/issues/58)) ([f8028a6](https://github.com/sourcefuse/arc-ng-components/commit/f8028a643b545ef92620b703d4e0fd1d1d78117d)), closes [#57](https://github.com/sourcefuse/arc-ng-components/issues/57) [#57](https://github.com/sourcefuse/arc-ng-components/issues/57)
+* **user-onboarding:** remove workspaces ([#71](https://github.com/sourcefuse/arc-ng-components/issues/71)) ([8cc49e6](https://github.com/sourcefuse/arc-ng-components/commit/8cc49e6373075f266669c26649fed028c4ffae4f)), closes [#70](https://github.com/sourcefuse/arc-ng-components/issues/70)
+
+
+### BREAKING CHANGES
+
+* **user-onboarding:** YES
+* **user-onboarding:** YES
+* **deps:** yes
+
+
+
+
+
 # [6.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-client@5.1.1...@sourceloop/user-onboarding-client@6.0.0) (2025-07-24)
 
 
