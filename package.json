@@ -4,17 +4,21 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "build:user-onboarding": "cd packages/user-onboarding && npx ng build userOnboardingLib",
+    "link:user-onboarding": "npm run build:user-onboarding && cd packages/user-onboarding/projects/user-onboarding-lib/dist && npm link && cd ../../../../sandbox/user-onboarding-example && npm link @sourceloop/user-onboarding-lib",
+    "watch:user-onboarding": "cd packages/user-onboarding && npx ng build userOnboardingLib --watch",
+    "start:user-onboarding-sandbox": "cd sandbox/user-onboarding-example && npm start"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.1.0",
-    "@commitlint/config-conventional": "^16.0.0",
-    "@commitlint/config-lerna-scopes": "^16.0.0",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/config-lerna-scopes": "^20.0.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
     "husky": "^7.0.4",
-    "lerna": "^4.0.0"
+    "lerna": "^9.0.0"
   },
   "husky": {
     "hooks": {

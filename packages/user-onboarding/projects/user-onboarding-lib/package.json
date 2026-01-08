@@ -9,16 +9,11 @@
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@videogular/ngx-videogular": "^5.0.1",
+    "@videogular/ngx-videogular": "^20.0.0",
     "ngx-webstorage-service": "^5.0.0",
     "rxjs": "~7.8.1",
     "shepherd.js": "^10.0.0",
     "uuid": "^8.3.2"
-  },
-  "overrides": {
-    "@videogular/ngx-videogular": {
-      "@angular/platform-browser-dynamic": "^20.0.0"
-    }
   },
   "scripts": {
     "checkIfNodeModulesExist": "[ -d \"../../node_modules\" ]",
