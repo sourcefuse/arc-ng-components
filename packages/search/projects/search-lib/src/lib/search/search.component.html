@@ -1,5 +1,4 @@
 <ng-container *ngIf="!showOnlySearchResultOverlay">
-  <!-- <div fxLayout fxLayoutAlign="start center" class="toolbar-search" *ngIf="config"> -->
     <div class="toolbar-search" *ngIf="config">
     <mat-form-field appearance="outline" class="toolbar-search-input">
       <input
@@ -17,7 +16,6 @@
         (blur)="hideSuggestions()"
         [(ngModel)]="searchBoxInput"
         (keyup)="hitSearchApi($event)"
-        placeholder="Search"
         (ngModelChange)="onChange(this.searchBoxInput)"
         [disabled]="disabled"
       />
@@ -31,11 +29,11 @@
     </mat-form-field>
   
     <mat-form-field appearance="outline" class="toolbar-search-select">
-      <mat-icon matSuffix [className]="config.dropDownButtonIconClass"></mat-icon>
       <mat-select
         [value]="category"
         (selectionChange)="setCategory($event.value)"
         panelClass="search-select"
+        
       >
         <mat-option [value]="model.name" *ngFor="let model of config.models">
           {{ model.displayName }}
@@ -95,7 +93,7 @@
                     searchBoxInput
                   )
                 "
-                style="display: inline"
+                class="inline-display"
               ></p>
               <ng-container *ngIf="titleTemplate">
                 <ng-container
@@ -122,9 +120,8 @@
                 *ngIf="
                   !titleTemplate && fetchModelImageUrlFromSuggestion(suggestion)
                 "
-                class="suggestions-categorize-false"
+                class="suggestions-categorize-false suggestion-image"
                 [src]="fetchModelImageUrlFromSuggestion(suggestion)"
-                style="margin-right: 5px"
                 alt="Img"
               />
               <ng-container *ngIf="subtitleTemplate">
@@ -144,7 +141,7 @@
                     searchBoxInput
                   )
                 "
-                style="display: inline"
+                class="inline-display"
               ></p>
               <ng-container *ngIf="titleTemplate">
                 <ng-container
