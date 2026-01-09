@@ -1,6 +1,6 @@
 {
   "name": "@sourceloop/search-element",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "A global search element for search microservice. ",
   "main": "./search-element.js",
   "private": false,
