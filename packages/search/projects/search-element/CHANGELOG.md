@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.4](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.3...@sourceloop/search-element@9.0.4) (2026-01-10)
+
+
+### Bug Fixes
+
+* **search-client:** update the arrow ([23fc581](https://github.com/sourcefuse/arc-ng-components/commit/23fc581f536cca21e6623017ee988827fa0ace6b)), closes [#00](https://github.com/sourcefuse/arc-ng-components/issues/00)
+
+
+
+
+
 ## [9.0.3](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@9.0.2...@sourceloop/search-element@9.0.3) (2026-01-09)
 
 **Note:** Version bump only for package @sourceloop/search-element
