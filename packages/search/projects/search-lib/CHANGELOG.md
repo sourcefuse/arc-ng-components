@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.6](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.5...@sourceloop/search-client@9.0.6) (2026-01-11)
+
+
+### Bug Fixes
+
+* **search-client:** defined variables so users can override default colors ([322db9a](https://github.com/sourcefuse/arc-ng-components/commit/322db9a129f4d835870cde060397c1f7a31f685b)), closes [#00](https://github.com/sourcefuse/arc-ng-components/issues/00)
+
+
+
+
+
 ## [9.0.5](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.4...@sourceloop/search-client@9.0.5) (2026-01-10)
 
 
