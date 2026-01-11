@@ -14,6 +14,7 @@ import {
   selector: 'app-search-bar',
   standalone: true,
   templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.scss'],
   imports: [CommonModule, FormsModule, SearchComponent],
 })
 export class SearchBarComponent {

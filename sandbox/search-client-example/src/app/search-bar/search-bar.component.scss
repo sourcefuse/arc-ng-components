@@ -1,0 +1,8 @@
+// this is how you can customize the search component styles
+
+
+:host ::ng-deep sourceloop-search {
+  --search-border-hover: #5c26f1 !important;
+  --search-border-focus: #5c26f1 !important;
+  --search-dropdown-background: #5c26f2 !important;
+}

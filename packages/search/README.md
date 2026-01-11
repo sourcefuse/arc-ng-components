@@ -148,22 +148,7 @@ You can also choose to use your own icons by providing classes for icons in the 
 
 ### Required Global Styles
 
-The search component uses Angular CDK overlays for the dropdown, which require global styles to function properly. **You must import the library's stylesheet in your application:**
-
-#### Option 1: Import in your `styles.scss`
-
-```scss
-@import '@sourceloop/search-client/styles';
-```
-
-#### Option 2: Add to `angular.json`
-
-```json
-"styles": [
-  "node_modules/@sourceloop/search-client/styles.scss",
-  "src/styles.scss"
-]
-```
+The search component uses Angular CDK overlays for the dropdown, which require global styles to function properly.
 
 ### Styling and Theming
 
@@ -186,19 +171,15 @@ sourceloop-search {
   --search-icon-color: #33333380; /* Color of icons */
 }
 
-#### Example: Custom Theming
-
-To customize the search component, add the following to your `styles.scss` (after importing the library styles):
-
-```scss
-@import '@sourceloop/search-client/styles';
-
+####Example: Custom Theming To customize the search component, add the following
+    to your `component.scss` ```scss 
+    
 // Customize component colors
-sourceloop-search {
-  --search-dropdown-background: #0056b3;
-  --search-dropdown-text-color: #ffffff;
-  --search-border-hover: #0056b3;
-  --search-border-focus: #003d82;
+
+:host ::ng-deep sourceloop-search {
+  --search-border-hover: #5c26f1 !important;
+  --search-border-focus: #5c26f1 !important;
+  --search-dropdown-background: #5c26f2 !important;
 }
 ````
 
