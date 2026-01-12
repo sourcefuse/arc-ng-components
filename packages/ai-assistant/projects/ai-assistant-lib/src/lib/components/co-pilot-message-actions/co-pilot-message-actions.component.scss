@@ -12,6 +12,10 @@
     width: $hw-16;
     height: $hw-16;
     color: $gray-600;
+    &.copy-response {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .co-pilot-message-action-buttons {
