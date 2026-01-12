@@ -2,11 +2,11 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {first} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate(['welcome'], {
-            queryParams: {code: data.code},
+            queryParams: { code: data.code },
           });
         },
         error => {
@@ -77,5 +77,9 @@ export class LoginComponent implements OnInit {
 
   loginViaAzure() {
     this.authenticationService.loginViaAzure();
+  }
+
+  loginViaSaml() {
+    this.authenticationService.loginViaSaml();
   }
 }
