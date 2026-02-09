@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.6...@sourceloop/search-client@9.1.0) (2026-02-09)
+
+
+### Features
+
+* **search-client:** replace input output decorator technique with signals ([#77](https://github.com/sourcefuse/arc-ng-components/issues/77)) ([bdee454](https://github.com/sourcefuse/arc-ng-components/commit/bdee454fee9538223ff815a55c084680d9423235)), closes [/#diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcR8-L17](https://github.com///issues/diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcR8-L17) [/#diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcR79-R102](https://github.com///issues/diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcR79-R102) [/#diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcL88-R112](https://github.com///issues/diff-5bc10f868bfdd4e36b01631098a46f5179787563ce1156a0ce34f8bad90ee8dcL88-R112) [#61](https://github.com/sourcefuse/arc-ng-components/issues/61)
+
+
+
+
+
 ## [9.0.6](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@9.0.5...@sourceloop/search-client@9.0.6) (2026-01-11)
 
 
