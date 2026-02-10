@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.2.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@8.2.0...@sourceloop/search-client@8.2.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* **chore:** remove the flex-layout dependency ([#78](https://github.com/sourcefuse/arc-ng-components/issues/78)) ([afb047f](https://github.com/sourcefuse/arc-ng-components/commit/afb047f0e31750969141a3fce0ca0cec8e63423d)), closes [/#diff-7829468e86c1cc5d5133195b5cb48e1ff6c75e3e9203777f6b2e379d9e4882b3L28-L33](https://github.com///issues/diff-7829468e86c1cc5d5133195b5cb48e1ff6c75e3e9203777f6b2e379d9e4882b3L28-L33) [/#diff-a0fe23534b616d51ce686d2a1bcd1a78bc75074aef1a2f6ee96c9469991e1a4cL26-R27](https://github.com///issues/diff-a0fe23534b616d51ce686d2a1bcd1a78bc75074aef1a2f6ee96c9469991e1a4cL26-R27) [/#diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34R7-R23](https://github.com///issues/diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34R7-R23) [/#diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34L30-L44](https://github.com///issues/diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34L30-L44) [/#diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34L56-R58](https://github.com///issues/diff-87db21a973eed4fef5f32b267aa60fcee5cbdf03c67fafdc2a9b553bb0b15f34L56-R58) [#76](https://github.com/sourcefuse/arc-ng-components/issues/76)
+
+
+
+
+
 # [8.2.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@8.0.1...@sourceloop/search-client@8.2.0) (2025-12-22)
 
 
