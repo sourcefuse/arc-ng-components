@@ -24,7 +24,7 @@ To ensure smooth integration, install the Search Library version that correspond
     </tr>
     <tr>
       <td>Angular v21+</td>
-      <td>Latest version (v10.x and above)</td>
+      <td>Latest version (v11.x and above)</td>
     </tr>
   </tbody>
 </table>
@@ -42,16 +42,16 @@ npm i @sourceloop/search-client
 Create a new Application using Angular CLI and import the `SearchComponent` in your application.SearchComponent is now a standalone component, so no NgModule is required.Also create a new service that implements the ISearchService interface exported by the search library. This service will be used by the exported component to make API calls whenever needed. You will have to update the providers section of your module with { provide: SEARCH_SERVICE_TOKEN, useExisting: Your_Service_Name }
 
 ```ts
-import { Component } from '@angular/core';
-import { SearchComponent, SEARCH_SERVICE_TOKEN } from '@sourceloop/search-client';
-import { SearchService } from './search.service';
+import {Component} from '@angular/core';
+import {SearchComponent, SEARCH_SERVICE_TOKEN} from '@sourceloop/search-client';
+import {SearchService} from './search.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [SearchComponent],
   templateUrl: './app.component.html',
-  providers: [{ provide: SEARCH_SERVICE_TOKEN, useClass: SearchService }],
+  providers: [{provide: SEARCH_SERVICE_TOKEN, useClass: SearchService}],
 })
 export class AppComponent {}
 ```
@@ -97,7 +97,6 @@ Apart from these there are some optional properties that you can give:
 - **noResultMessage (string) :** Message to display in dropdown incase no matching result found.
 - **searchIconClass (string) :** Can be used to give custom icon for search in search bar.
 - **crossIconClass (string) :** Can be used to give custom icon for clearing text input in search bar.
-- **dropDownButtonIconClass (string) :** Can be used to give custom icon for category drop down button.
 - **recentSearchIconClass (string) :** Can be used to give custom icon for recent searches displayed in the search dropdown.
 
 Your component might look something like
@@ -160,32 +159,6 @@ type RecentSearchEvent = {
 ></sourceloop-search>
 ```
 
-````
-`Configuration to show only result overlay without search input box`
-There are other parameters which you can configure to use only the search result overlay without search input box
-
-```html
-<sourceloop-search
-  [config]="config"
-  [(ngModel)]="value"
-  [showOnlySearchResultOverlay]="true"
-  [customAllLabel]="customAllLabel"
-  [customSearchEvent]="customSearchEvent"
-></sourceloop-search>
-````
-
-You can pass `showOnlySearchResultOverlay` to true to use only search result overlay. You can also pass `customAllLabel` in case you have different model name configuration for performing search in All categories
-
-**Manadatory parameter when you configure `showOnlySearchResultOverlay` to true**
-You should pass `customSearchEvent`
-
-```ts
-interface CustomSearchEvent {
-  searchValue: string;
-  modelName: string;
-}
-```
-
 ### Icons
 
 To use the default icons you will have to import the following in your styles.scss:
@@ -195,6 +168,45 @@ To use the default icons you will have to import the following in your styles.sc
 ```
 
 You can also choose to use your own icons by providing classes for icons in the configuration.
+
+### Required Global Styles
+
+The search component uses Angular CDK overlays for the dropdown, which require global styles to function properly.
+
+### Styling and Theming
+
+The search component uses CSS custom properties (CSS variables) for theming, allowing you to customize colors without modifying the library code. You can override these variables in your application's global styles or in a component-specific stylesheet.
+
+#### Available CSS Variables
+
+````scss
+sourceloop-search {
+  --search-background: #f7f7f7; /* Background of the search container */
+  --search-input-background: #f1f3f4; /* Background of the input field */
+  --search-input-text-color: #6b6b6b; /* Text color in the input field */
+  --search-border-hover: #a53159; /* Border color on hover */
+  --search-border-focus: #90003b; /* Border color when focused */
+  --search-dropdown-background: #90003b; /* Background of the category dropdown (on hover/focus) */
+  --search-dropdown-text-color: #ffffff; /* Text color in the category dropdown (on hover/focus) */
+  --search-highlight-bg: #fee8e8; /* Background color for highlighted suggestions */
+  --search-heading-color: #9c9c9c; /* Color of category headings */
+  --search-text-color: #333; /* General text color */
+  --search-icon-color: #33333380; /* Color of icons */
+}
+
+####Example: Custom Theming To customize the search component, add the following
+    to your `component.scss` ```scss 
+    
+// Customize component colors
+
+:host ::ng-deep sourceloop-search {
+  --search-border-hover: #5c26f1 !important;
+  --search-border-focus: #5c26f1 !important;
+  --search-dropdown-background: #5c26f2 !important;
+}
+````
+
+This allows you to match the search component's appearance with your application's design system.
 
 ## Web Component
 

@@ -260,3 +260,17 @@ enabled. Commitizen can help you generate your commit messages automatically.
 
 And to use it, simply call `git commit`. The tool will help
 you generate a commit message that follows the above guidelines.
+
+## Building and Linking Search Library with Sandbox
+Add the following scripts under the `scripts` section in the root `package.json`:
+```
+{
+  "scripts": {
+    "build:search": "cd packages/search && npx ng build search-lib",
+    "link:search": "npm run build:search && cd packages/search/projects/search-lib/dist && npm link && cd ../../../../../sandbox/search-client-example && npm link @sourceloop/search-client",
+    "watch:search": "cd packages/search && npx ng build search-lib --watch",
+    "start:search-sandbox": "cd sandbox/search-client-example && npm start"
+  }
+}
+```
+The same build–link–watch workflow can be used for any Angular library in this monorepo.

@@ -30,16 +30,6 @@ jobs:
           GITHUB_PAT: ${{ secrets.RELEASE_COMMIT_GH_PAT }}
           CONFIG_USERNAME: ${{ vars.RELEASE_COMMIT_USERNAME }}
           CONFIG_EMAIL: ${{ vars.RELEASE_COMMIT_EMAIL }}
-      # - name: Authenticate with Registry
-      #   run: |
-      #     echo "@${NPM_USERNAME}:registry=https://registry.npmjs.org/" > .npmrc
-      #     echo "registry=https://registry.npmjs.org/" >> .npmrc
-      #     echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-      #     npm whoami
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     NPM_USERNAME: ${{ vars.NPM_USERNAME }}
-
       - name: Install Dependencies
         run: |
           npm ci --ignore-scripts
@@ -54,5 +44,3 @@ jobs:
         # To always compare changes from registry
         # using `from-package` compares version in local package.json with registry and publish it if required.
         run: npx lerna publish from-package --yes
-        # env:
-        #   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

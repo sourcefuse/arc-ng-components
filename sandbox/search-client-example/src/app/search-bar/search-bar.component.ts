@@ -9,11 +9,12 @@ import {
   IDefaultReturnType,
   Configuration,
   SearchComponent,
-} from '@sourceloop/search-client';
+} from '@sourceloop/search-client/src';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
   templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.scss'],
   imports: [CommonModule, FormsModule, SearchComponent],
 })
 export class SearchBarComponent {
