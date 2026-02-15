@@ -4,3 +4,5 @@ export * from './co-pilot-video.service';
 export * from './image-store.service';
 export * from './localization-provider.service';
 export * from './sse.service';
+export * from './api.service';
+export * from './download.service';

@@ -4,13 +4,17 @@
 >
   <div class="co-pilot-message-action-buttons">
     <span
-      class="icomoon copy-outline cursor-pointer icons"
+      class="cursor-pointer copy-response icons"
       (click)="copyClicked()"
       [matTooltip]="tooltipMessage ?? 'copyResponseLbl' | translate"
       matTooltipPosition="above"
       #tooltip="matTooltip"
       (keydown)="onKeyDownCopy($event)"
-    ></span>
+    >
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4996 1.25C12.8448 1.25 13.1246 1.52982 13.1246 1.875V4.48212H11.8746V2.5H2.5V14.314H6.1784V15.564H1.875C1.52982 15.564 1.25 15.2842 1.25 14.939V1.875C1.25 1.52982 1.52982 1.25 1.875 1.25H12.4996ZM18.7496 17.9376C18.7496 18.3863 18.3858 18.7501 17.9371 18.7501H8.31207C7.86333 18.7501 7.49957 18.3863 7.49957 17.9376V6.49853C7.49957 6.0498 7.86333 5.68603 8.31207 5.68603H17.9371C18.3858 5.68603 18.7496 6.0498 18.7496 6.49853V17.9376ZM8.74957 6.93603V17.5001H17.4996V6.93603H8.74957Z" fill="#686868"/>
+      </svg>
+    </span>
     <div class="divider-container">
       <div class="vertical-divider"></div>
     </div>

@@ -14,6 +14,7 @@ export class CoPilotHeaderComponent {
   @Output() resetChatEmit = new EventEmitter();
 
   @Output() openHistoryComp = new EventEmitter();
+  showPoweredAiText = false;
 
   onClose() {
     this.closeDialog.emit();
