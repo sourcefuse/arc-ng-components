@@ -135,6 +135,15 @@ img {
   margin-left: 25px;
 }
 
+.social .saml {
+  padding-top: 8px;
+  margin-left: 25px;
+}
+
+.saml-icon {
+  max-width: 18px;
+}
+
 .social .az {
   padding-top: 8px;
 }
