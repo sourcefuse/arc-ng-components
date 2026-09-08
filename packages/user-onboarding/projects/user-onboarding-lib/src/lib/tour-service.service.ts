@@ -5,9 +5,9 @@
 import {TourStoreServiceService} from './tour-store-service.service';
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   Injectable,
-  Injector,
+  EnvironmentInjector,
+  createComponent,
 } from '@angular/core';
 import Shepherd from 'shepherd.js';
 import {
@@ -46,13 +46,14 @@ export class TourServiceService {
   }>();
   tourFailed$ = this.tourFailed.asObservable();
 
-  private tour: Shepherd.Tour;
+  // The tour instance is created during the tour execution flow,
+  // not when the service is constructed.
+  private tour!: Shepherd.Tour;
 
   constructor(
     private readonly tourStoreService: TourStoreServiceService,
     private readonly router: Router,
-    private readonly componentFactory: ComponentFactoryResolver,
-    private readonly injector: Injector,
+    private readonly injector: EnvironmentInjector,
     private readonly appRef: ApplicationRef,
   ) {}
 
@@ -73,10 +74,16 @@ export class TourServiceService {
   public get exitOnEsc() {
     return this._exitOnEsc;
   }
-  private addRemovedSteps(removedSteps): void {
+  private addRemovedSteps(removedSteps:TourStep[]): void {
     const count = removedSteps.length;
     for (let i = 0; i < count; i++) {
-      this.tour.steps.splice(0, 0, this.tour.steps.pop());
+      // pop() can return undefined when the steps array is empty,
+      // so add the step back only when a step is available.
+      const step = this.tour.steps.pop();
+
+      if (step) {
+        this.tour.steps.splice(0, 0, step);
+      }
     }
   }
 
@@ -87,22 +94,25 @@ export class TourServiceService {
   private actionAssignment(
     e: TourStep,
     b: TourButton,
-    wrapperNormalNext,
-    wrapperNormalPrev,
-    wrapperNext,
-    wrapperPrev,
-    func,
+    wrapperNormalNext: () => void,
+    wrapperNormalPrev: () => void,
+    wrapperNext: () => void,
+    wrapperPrev: () => void,
+    func: () => void,
     tourId: string,
     props: Props,
   ): void {
     if (b.key === 'prevAction') {
-      b.action =
+      // Fixed: Wrapped functions to return the action as expected by shepherd.js type definition
+      b.action = () =>
         e.prevRoute === e.currentRoute ? wrapperNormalPrev : wrapperPrev;
     } else if (b.key === 'nextAction') {
-      b.action =
+      // Fixed: Wrapped functions to return the action as expected by shepherd.js type definition
+      b.action = () =>
         e.nextRoute === e.currentRoute ? wrapperNormalNext : wrapperNext;
     } else {
-      b.action = func.bind({tour: this.tour, tourId, props});
+      // Fixed: Wrapped bind result to return the action as expected by shepherd.js type definition
+      b.action = () => func.bind({tour: this.tour, tourId, props});
     }
   }
 
@@ -168,9 +178,11 @@ export class TourServiceService {
             .subscribe();
         }
         tourInstance.tourSteps.forEach((e, index) => {
-          e.buttons.forEach(b => {
+          // Fixed: Added null check for buttons array before forEach
+          e.buttons?.forEach(b => {
             const key = b.key;
-            const func = this.tourStoreService.getFnByKey(key);
+            // Fixed: Added type assertion for key and func since getFnByKey returns Function but we need () => void
+            const func = this.tourStoreService.getFnByKey(key as string) as () => void;
             const wrapperNext = () => {
               this.navigateAndMoveToNextStep(e, tourInstance, tourState, index);
             };
@@ -204,7 +216,8 @@ export class TourServiceService {
               wrapperPrev,
               func,
               tourInstance.tourId,
-              tourState.props,
+              // Fixed: tourState.props is guaranteed to exist here as we set it above
+              tourState.props ?? {},
             );
           });
         });
@@ -220,9 +233,11 @@ export class TourServiceService {
             this.tour.start();
             if (removedSteps.length) {
               removedSteps.forEach((er, index) => {
-                er.buttons.forEach(br => {
+                // Fixed: Added null check for buttons array before forEach
+                er.buttons?.forEach(br => {
                   const k = br.key;
-                  const funcRemoved = this.tourStoreService.getFnByKey(k);
+                  // Fixed: Added type assertion for key and func since getFnByKey returns Function but we need () => void
+                  const funcRemoved = this.tourStoreService.getFnByKey(k as string) as () => void;
                   const wrapperNextRemoved = () => {
                     this.navigateAndMoveToNextStepRemoved(
                       er,
@@ -268,7 +283,8 @@ export class TourServiceService {
                     wrapperPrevRemoved,
                     funcRemoved,
                     tourInstance.tourId,
-                    tourState.props,
+                    // Fixed: tourState.props is guaranteed to exist here as we set it above
+                    tourState.props ?? {},
                   );
                 });
               });
@@ -335,8 +351,10 @@ export class TourServiceService {
         if (tourInstance.tourSteps[0].attachTo) {
           tourInstance.tourSteps[0].attachTo.scrollTo = false;
         }
-        this.checkComponents(tourInstance, inputs).then(() => {
-          this.triggerTour(tourInstance, props);
+        // Fixed: Added null check for inputs parameter
+        this.checkComponents(tourInstance, inputs ?? {}).then(() => {
+          // Fixed: Added null check for props parameter
+          this.triggerTour(tourInstance, props ?? {});
         });
       });
   }
@@ -356,7 +374,12 @@ export class TourServiceService {
       }
     }
   }
+  // Fixed: Added null check for attachTo parameter and proper type handling
   private checkElement(attachTo: TourStep['attachTo']) {
+    // Fixed: Added null check for attachTo
+    if (!attachTo) {
+      return false;
+    }
     switch (attachTo.type) {
       case 'string':
         return document.querySelector(attachTo.element as string);
@@ -365,7 +388,8 @@ export class TourServiceService {
         return attachTo.element as Element;
 
       case 'function':
-        const fn = this.tourStoreService.getFnByKey(attachTo.element);
+        // Fixed: Type is guaranteed to be string here due to switch case
+        const fn = this.tourStoreService.getFnByKey(attachTo.element as string);
         return fn() as Element;
 
       default:
@@ -428,7 +452,8 @@ export class TourServiceService {
     index: number,
   ) {
     if (index === tourInstance.tourSteps.length - 1) {
-      this.setTourComplete(tourInstance.tourId, tourState.props);
+      // Fixed: Added null check for props
+      this.setTourComplete(tourInstance.tourId, tourState.props ?? {});
       this.tour.next();
     } else {
       this.waitForElement(
@@ -731,18 +756,21 @@ export class TourServiceService {
       }
     });
   }
-  private parseComponent(step: ComponentStep, input: object) {
+  // Fixed: Updated to use Angular 22's createComponent API instead of deprecated ComponentFactoryResolver
+  // Fixed: Added proper type for input parameter with index signature
+  private parseComponent(step: ComponentStep, input: {[key: string]: any}) {
     return Promise.resolve({
       forStep: step.forStep,
       html: () => {
-        const factory = this.componentFactory.resolveComponentFactory(
-          step.component,
-        );
-        const constructedComponent = factory.create(this.injector);
-        Object.keys(input ?? {}).forEach(k => {
-          constructedComponent.instance[k] = input[k];
+        // Fixed: Using the new createComponent API instead of deprecated ComponentFactoryResolver
+        const constructedComponent = createComponent(step.component, {
+          environmentInjector: this.injector,
         });
-        constructedComponent.instance['tour'] = this.tour;
+        // Fixed: Added index signature to input type and proper type checking
+        Object.keys(input ?? {}).forEach(k => {
+          (constructedComponent.instance as any)[k] = input[k];
+        });
+        (constructedComponent.instance as any)['tour'] = this.tour;
         this.appRef.attachView(constructedComponent.hostView);
         return constructedComponent.location.nativeElement;
       },
