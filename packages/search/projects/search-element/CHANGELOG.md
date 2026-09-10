@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@11.0.0...@sourceloop/search-element@11.0.1) (2026-09-10)
+
+### Bug Fixes
+
+- **packages:** fix resolve compatibility issues ([#83](https://github.com/sourcefuse/arc-ng-components/issues/83)) ([8d444dc](https://github.com/sourcefuse/arc-ng-components/commit/8d444dcdd2a2456511ea523b60a972bfa8ae9ae6))
+
 # [11.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-element@10.0.0...@sourceloop/search-element@11.0.0) (2025-12-30)
 
 ### Features
