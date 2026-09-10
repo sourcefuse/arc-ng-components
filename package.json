@@ -47,11 +47,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "overrides": {
-    "@commitlint/config-lerna-scopes": {
-      "lerna": "^7.3.0"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-customizable"
