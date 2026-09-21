@@ -3,6 +3,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    // TypeScript 6 enables "strict" by default; this project predates that and
+    // was never strict. Keep the previous semantics explicit.
+    "strict": false,
+    // The library is consumed through a file: symlink into packages/, so without
+    // this TS resolves @angular/core twice (root + local) and sees its globals
+    // declared twice. The build honours the matching angular.json build option;
+    // this keeps tsc and editors resolving the same way.
+    "preserveSymlinks": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -15,6 +23,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    // Temporarily allow deprecated options (baseUrl and downlevelIteration) in TypeScript 6.
+    "ignoreDeprecations": "6.0"
   }
 }
