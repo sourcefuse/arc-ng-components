@@ -43,7 +43,9 @@ export class TourStoreServiceService {
   private readonly commandMap = new Map<string, BaseCommand>();
   private readonly functionMap = new Map();
   private readonly componentMap = new Map();
-  private sessionId: string;
+  // The session ID is assigned during the service initialization flow,
+  // so it is intentionally not initialized at declaration time.
+  private sessionId!: string;
   private readonly defaultSSCommand = new SaveSCommand(this.storage);
   private readonly defaultSTCommand = new SaveTCommand(this.storage);
   private readonly defaultLSCommand = new LoadSCommand(this.storage);
@@ -59,22 +61,24 @@ export class TourStoreServiceService {
     this.commandMap.set('DeleteStateCommand', this.defaultDSCommand);
     this.commandMap.set('DeleteTourCommand', this.defaultDTCommand);
   }
-  registerSaveTourCommand(cmd): void {
+  // BaseCommand is used because all registered commands are stored
+  // in the commandMap as BaseCommand instances.
+  registerSaveTourCommand(cmd: BaseCommand): void {
     this.commandMap.set('SaveTourCommand', cmd);
   }
-  registerLoadTourCommand(cmd): void {
+  registerLoadTourCommand(cmd: BaseCommand): void {
     this.commandMap.set('LoadTourCommand', cmd);
   }
-  registerSaveStateCommand(cmd): void {
+  registerSaveStateCommand(cmd: BaseCommand): void {
     this.commandMap.set('SaveStateCommand', cmd);
   }
-  registerLoadStateCommand(cmd): void {
+  registerLoadStateCommand(cmd: BaseCommand): void {
     this.commandMap.set('LoadStateCommand', cmd);
   }
-  registerDeleteStateCommand(cmd): void {
+  registerDeleteStateCommand(cmd: BaseCommand): void {
     this.commandMap.set('DeleteStateCommand', cmd);
   }
-  registerDeleteTourCommand(cmd): void {
+  registerDeleteTourCommand(cmd: BaseCommand): void {
     this.commandMap.set('DeleteTourCommand', cmd);
   }
 
@@ -119,19 +123,21 @@ export class TourStoreServiceService {
     return command.execute();
   }
 
-  public registerFnRef(key, fn: () => void): void {
+  // Keys are string identifiers used to register and retrieve
+  // functions and components from their respective maps.
+  public registerFnRef(key: string, fn: () => void): void {
     this.functionMap.set(key, fn);
   }
 
-  public registerComponent(key, component: Type<unknown>) {
+  public registerComponent(key: string, component: Type<unknown>) {
     this.componentMap.set(key, component);
   }
 
-  public getFnByKey(key): Function {
+  public getFnByKey(key: string): Function {
     return this.functionMap.get(key);
   }
 
-  public getComponentByKey(key): Type<unknown> {
+  public getComponentByKey(key: string): Type<unknown> {
     return this.componentMap.get(key);
   }
 

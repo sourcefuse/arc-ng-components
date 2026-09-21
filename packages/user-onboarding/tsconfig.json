@@ -19,7 +19,9 @@
     "module": "es6",
     "lib": ["es2018","dom"],
     "paths": {"user-onboarding-lib": ["dist"]},
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    // Temporarily allow deprecated options (baseUrl and downlevelIteration) in TypeScript 6.
+    "ignoreDeprecations": "6.0"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
