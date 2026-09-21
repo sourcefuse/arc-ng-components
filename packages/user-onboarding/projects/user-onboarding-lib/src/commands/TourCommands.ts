@@ -14,7 +14,9 @@ import {StorageService} from 'ngx-webstorage-service';
 
 export class SaveTCommand implements SaveTourCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: SaveTourParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: SaveTourParameters;
   execute(): Observable<Tour> {
     const newTour: Tour = {
       tourId: this.parameters.tourId,
@@ -28,7 +30,9 @@ export class SaveTCommand implements SaveTourCommand {
 
 export class LoadTCommand implements LoadTourCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: LoadTourParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: LoadTourParameters;
   execute(): Observable<Tour> {
     const existingTour = this.storage.get(this.parameters.tourId);
     return of(existingTour);
@@ -37,7 +41,9 @@ export class LoadTCommand implements LoadTourCommand {
 
 export class DeleteTCommand implements DeleteTourCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: DeleteTourParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: DeleteTourParameters;
   execute(): void {
     this.storage.remove(this.parameters.tourId);
   }

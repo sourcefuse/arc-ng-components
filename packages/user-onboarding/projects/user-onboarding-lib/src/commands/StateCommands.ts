@@ -14,7 +14,9 @@ import {StorageService} from 'ngx-webstorage-service';
 
 export class SaveSCommand implements SaveStateCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: SaveStateParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: SaveStateParameters;
   execute(): Observable<TourState> {
     const newTourState = this.parameters.state;
     this.storage.set(
@@ -27,7 +29,9 @@ export class SaveSCommand implements SaveStateCommand {
 
 export class LoadSCommand implements LoadStateCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: LoadStateParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: LoadStateParameters;
   execute(): Observable<TourState> {
     const currentState = this.storage.get(
       `${this.parameters.sessionId}_${this.parameters.tourId}`,
@@ -38,7 +42,9 @@ export class LoadSCommand implements LoadStateCommand {
 
 export class DeleteSCommand implements DeleteStateCommand {
   constructor(private readonly storage: StorageService) {}
-  public parameters: DeleteStateParameters;
+  // Definite assignment assertion: parameters is initialized later
+  // during command execution rather than in the constructor.
+  public parameters!: DeleteStateParameters;
   execute() {
     this.storage.remove(
       `${this.parameters.sessionId}_${this.parameters.tourId}`,
