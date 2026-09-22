@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@11.0.0...@sourceloop/search-client@11.0.1) (2026-09-22)
+
+### Bug Fixes
+
+- **search-client:** fix publish and added new branch in lerna v21 ([1afcade](https://github.com/sourcefuse/arc-ng-components/commit/1afcade242447571b76d91bbb8d3bf67e4ef28dc))
+
 # [11.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@10.0.0...@sourceloop/search-client@11.0.0) (2025-12-30)
 
 ### Features
