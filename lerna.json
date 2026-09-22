@@ -1,10 +1,10 @@
 {
-  "packages": [ 
-  "packages/search/projects/search-lib",
-  "packages/search/projects/search-element",
-  "packages/user-onboarding/projects/user-onboarding-lib",
-  "packages/user-onboarding/projects/user-onboarding-element"
-],
+  "packages": [
+    "packages/search/projects/search-lib",
+    "packages/search/projects/search-element",
+    "packages/user-onboarding/projects/user-onboarding-lib",
+    "packages/user-onboarding/projects/user-onboarding-element"
+  ],
   "command": {
     "version": {
       "conventionalCommits": true,
@@ -13,7 +13,13 @@
     "publish": {
       "conventionalCommits": true,
       "message": "chore: publish release",
-      "allowBranch": ["master", "search-v20","user-onboarding-v20","search-v19"],
+      "allowBranch": [
+        "master",
+        "search-v20",
+        "user-onboarding-v20",
+        "search-v19",
+        "V21"
+      ],
       "noPrivate": true,
       "graphType": "all"
     },
