@@ -103,16 +103,13 @@ export class TourServiceService {
     props: Props,
   ): void {
     if (b.key === 'prevAction') {
-      // Fixed: Wrapped functions to return the action as expected by shepherd.js type definition
-      b.action = () =>
+      b.action =
         e.prevRoute === e.currentRoute ? wrapperNormalPrev : wrapperPrev;
     } else if (b.key === 'nextAction') {
-      // Fixed: Wrapped functions to return the action as expected by shepherd.js type definition
-      b.action = () =>
+      b.action =
         e.nextRoute === e.currentRoute ? wrapperNormalNext : wrapperNext;
     } else {
-      // Fixed: Wrapped bind result to return the action as expected by shepherd.js type definition
-      b.action = () => func.bind({tour: this.tour, tourId, props});
+      b.action = func.bind({tour: this.tour, tourId, props});
     }
   }
 
@@ -182,7 +179,9 @@ export class TourServiceService {
           e.buttons?.forEach(b => {
             const key = b.key;
             // Fixed: Added type assertion for key and func since getFnByKey returns Function but we need () => void
-            const func = this.tourStoreService.getFnByKey(key as string) as () => void;
+            const func = this.tourStoreService.getFnByKey(
+              key as string,
+            ) as () => void;
             const wrapperNext = () => {
               this.navigateAndMoveToNextStep(e, tourInstance, tourState, index);
             };
@@ -237,7 +236,9 @@ export class TourServiceService {
                 er.buttons?.forEach(br => {
                   const k = br.key;
                   // Fixed: Added type assertion for key and func since getFnByKey returns Function but we need () => void
-                  const funcRemoved = this.tourStoreService.getFnByKey(k as string) as () => void;
+                  const funcRemoved = this.tourStoreService.getFnByKey(
+                    k as string,
+                  ) as () => void;
                   const wrapperNextRemoved = () => {
                     this.navigateAndMoveToNextStepRemoved(
                       er,
