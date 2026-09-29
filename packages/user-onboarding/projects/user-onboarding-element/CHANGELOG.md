@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@9.0.2...@sourceloop/user-onboarding-element@10.0.0) (2026-09-29)
+
+### Bug Fixes
+
+- **user-onboarding:** restore tour button actions ([#88](https://github.com/sourcefuse/arc-ng-components/issues/88)) ([ca62968](https://github.com/sourcefuse/arc-ng-components/commit/ca629688d7bcdaa027250c8518d0afaf9b92952b)), closes [#87](https://github.com/sourcefuse/arc-ng-components/issues/87)
+
+### chore
+
+- **deps:** Angular 21 to 22 migration ([#86](https://github.com/sourcefuse/arc-ng-components/issues/86)) ([a0e7c77](https://github.com/sourcefuse/arc-ng-components/commit/a0e7c77aa2ed3fc94f13a05ee4c0db1dfc8ec745))
+
+### BREAKING CHANGES
+
+- **deps:** YES
+
+Fixes # (issue)
+
+## Type of change
+
+Please delete options that are not relevant.
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing
+      functionality to not work as expected)
+- [ ] Intermediate change (work in progress)
+
+## How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide
+instructions so we can reproduce. Please also list any relevant details
+for your test configuration
+
+- [ ] Test A
+- [ ] Test B
+
+## Checklist:
+
+- [ ] Performed a self-review of my own code
+- [ ] npm test passes on your machine
+- [ ] New tests added or existing tests modified to cover all changes
+- [ ] Code conforms with the style guide
+- [ ] API Documentation in code was updated
+- [ ] Any dependent changes have been merged and published in downstream
+      modules
+
 ## [9.0.2](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-element@9.0.1...@sourceloop/user-onboarding-element@9.0.2) (2026-09-10)
 
 ### Bug Fixes
