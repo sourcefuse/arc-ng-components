@@ -4,7 +4,7 @@
   "description": "payment-example-frontend.",
   "private": true,
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^0.34.0",
     "dotenv": "^8.2.0",
     "mdbreact": "5.2.0",
     "react": "^16.12.0",
@@ -34,5 +34,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "overrides": {
+    "node-fetch": "^2.7.0",
+    "svgo": "^2.8.4",
+    "nth-check": "^2.1.1",
+    "resolve-url-loader": "^5.0.0",
+    "serialize-javascript": "^7.0.3",
+    "webpack-dev-server": {
+      "webpack-dev-middleware": "^7.4.6"
+    }
   }
 }
