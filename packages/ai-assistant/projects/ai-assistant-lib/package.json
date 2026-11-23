@@ -9,7 +9,10 @@
     "@angular/cdk": "^22.2.6",
     "@angular/common": "^22.2.6",
     "@angular/core": "^22.2.6",
-    "@angular/elements": "^22.2.6"
+    "@angular/elements": "^22.2.6",
+    "@angular/forms": "^22.2.6",
+    "@angular/material": "^22.2.6",
+    "@angular/platform-browser": "^22.2.6"
   },
   "dependencies": {
     "deep-chat": "^1.4.11",
@@ -18,14 +21,15 @@
   },
   "scripts": {
     "checkIfNodeModulesExist": "[ -d \"../../node_modules\" ]",
-    "installNodeModules": "cd ../../ && npm i",
+    "installNodeModules": "cd ../../ && npm ci --ignore-scripts",
     "prebuild": "npm run checkIfNodeModulesExist || npm run installNodeModules",
     "libraryBuild": "ng build ai-assistant && cp -r src/assets dist/assets",
     "build": "npm run libraryBuild",
     "postbuild": "echo \"postbuild started !\"",
     "prepublishOnly": "npm run build",
     "pretest": "npm run build",
-    "test": "echo \"No tests available !\""
+    "test": "ng test ai-assistant --no-watch --no-progress --browsers=ChromeHeadlessCI",
+    "lint": "ng lint ai-assistant"
   },
   "repository": {
     "type": "git",
