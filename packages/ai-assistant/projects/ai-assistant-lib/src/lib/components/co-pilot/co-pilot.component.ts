@@ -1,7 +1,14 @@
 /** VERY IMPORT TO LOAD DEEP CHAT */
 import 'deep-chat';
 
-import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 // import {environment} from '@rao/env/environment';
 import {MessageContent, MessageStyles} from 'deep-chat/dist/types/messages';
@@ -9,7 +16,7 @@ import {Request} from 'deep-chat/dist/types/request';
 import {CustomStyle} from 'deep-chat/dist/types/styles';
 import {SubmitButtonStyles} from 'deep-chat/dist/types/submitButton';
 import {TextInput} from 'deep-chat/dist/types/textInput';
-import {Subscription, take} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 import {
   CoPilotBase,
@@ -37,6 +44,8 @@ import {Signals} from 'deep-chat/dist/types/handler';
 import {translationRecord} from '../../constants/localization.constant';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotBase,
   templateUrl: './co-pilot.component.html',
   styleUrls: ['./co-pilot.component.scss'],
@@ -50,6 +59,7 @@ export class CoPilotComponent {
     private readonly sseService: SseService,
     private readonly imageStoreSvc: ImageStoreService,
     private readonly localalizationSvc: LocalizationProviderService,
+    private readonly cdr: ChangeDetectorRef,
   ) {
     this.getTranslationMessages();
   }
@@ -107,6 +117,7 @@ export class CoPilotComponent {
   ngOnInit(): void {
     this._subscriptions = [];
     this.setChatConfig();
+    this._setRequestConfig();
     this.imageStoreSvc.removeMap();
     sessionStorage.removeItem('dragged');
   }
@@ -128,14 +139,17 @@ export class CoPilotComponent {
     this.localalizationSvc.setLocalizedStrings(translationRecord);
   }
 
-  ngAfterViewInit(): void {
-    this.chatElementRef.nativeElement.request =
-      this.deepChatUtilSvc.getRequestConnection();
-
-    if (this.chatElementRef.nativeElement.request) {
-      this.chatElementRef.nativeElement.request.handler = this.handler;
-      this.requestProp = this.chatElementRef.nativeElement.request;
-    }
+  /**
+   * Built before the first render so the `[request]` binding never changes
+   * afterwards. Setting it later (it used to happen in ngAfterViewInit) makes
+   * deep-chat re-render on the next change detection and drop the messages,
+   * which zoneless hosts hit on the first user click.
+   */
+  private _setRequestConfig(): void {
+    this.requestProp = {
+      ...this.deepChatUtilSvc.getRequestConnection(),
+      handler: this.handler,
+    };
   }
 
   appendMessageFromIntro(messageContent: MessageContent) {
@@ -179,6 +193,8 @@ export class CoPilotComponent {
     this.chatElementRef.nativeElement.clearMessages();
     setTimeout(() => {
       this.showDeepChatComp = true;
+      // Timers don't trigger change detection in zoneless hosts.
+      this.cdr.markForCheck();
     }, Integers.Zero);
   }
 

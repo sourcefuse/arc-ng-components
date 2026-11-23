@@ -5,7 +5,7 @@
   controls
   disablepictureinpicture
   controlslist="nodownload"
-  [poster]="posterImg"
+  [poster]="posterImg ?? ''"
   class="co-pilot-video"
   controls
   crossorigin="anonymous | use-credentials"
@@ -14,7 +14,7 @@
 >
   <source
     [id]="'howtovideosource-' + videofilekey"
-    [src]="safeUrl"
+    [src]="safeUrl ?? ''"
     type="video/mp4"
   />
   <track label="English" kind="captions" srclang="en" default />

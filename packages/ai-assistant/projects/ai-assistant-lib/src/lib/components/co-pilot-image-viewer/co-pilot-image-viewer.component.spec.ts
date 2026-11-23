@@ -9,6 +9,14 @@ import {
 
 import {CoPilotImageViewerComponent} from './co-pilot-image-viewer.component';
 import {Integers} from '../../enums/numbers.enum';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {LocalizationPipe} from '../../pipes/localization.pipe';
 
 describe('CoPilotImageViewerComponent', () => {
   let component: CoPilotImageViewerComponent;
@@ -18,8 +26,19 @@ describe('CoPilotImageViewerComponent', () => {
     dialogRefSpy = jasmine.createSpyObj('MatDialogRef', ['close']);
 
     await TestBed.configureTestingModule({
-      declarations: [CoPilotImageViewerComponent],
-      imports: [MatDialogModule, HttpClientModule, HttpClientTestingModule],
+      declarations: [CoPilotImageViewerComponent, LocalizationPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        MatDialogModule,
+        HttpClientModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        DragDropModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatIconModule,
+        MatTooltipModule,
+      ],
       providers: [
         {provide: MatDialogRef, useValue: dialogRefSpy},
         {provide: MAT_DIALOG_DATA, useValue: []},

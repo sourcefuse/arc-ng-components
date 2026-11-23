@@ -1,8 +1,15 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {CoPilotHeader} from '../../constants';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotHeader,
   templateUrl: './co-pilot-header.component.html',
   styleUrls: ['./co-pilot-header.component.scss'],

@@ -6,42 +6,39 @@
     <span class="cursor-pointer icomoon close" (click)="closeTooltip()"></span>
   </div>
   <div class="co-pilot-downvote-options-list">
-    <mat-chip-list class="first-row">
+    <mat-chip-set class="first-row">
       <mat-chip
         class="cursor-pointer co-pilot-downvote-chip"
         *ngFor="let opt of firstRowButtons"
-        selectable="true"
         (click)="selectOption(opt)"
         [disabled]="loading"
         [ngClass]="{'selected-chip': reason === opt.value}"
       >
         <span class="co-pilot-downvote-value-text">{{ opt.value }}</span>
       </mat-chip>
-    </mat-chip-list>
-    <mat-chip-list class="second-row">
+    </mat-chip-set>
+    <mat-chip-set class="second-row">
       <mat-chip
         class="cursor-pointer co-pilot-downvote-chip"
         *ngFor="let opt of secondRowButtons"
-        selectable="true"
         (click)="selectOption(opt)"
         [disabled]="loading"
         [ngClass]="{'selected-chip': reason === opt.value}"
       >
         <span class="co-pilot-downvote-value-text"> {{ opt.value }}</span>
       </mat-chip>
-    </mat-chip-list>
-    <mat-chip-list class="third-row">
+    </mat-chip-set>
+    <mat-chip-set class="third-row">
       <mat-chip
         class="cursor-pointer co-pilot-downvote-chip"
         *ngFor="let opt of thirdRowButtons"
-        selectable="true"
         (click)="selectOption(opt)"
         [disabled]="loading"
         [ngClass]="{'selected-chip': reason === opt.value}"
       >
         <span class="co-pilot-downvote-value-text"> {{ opt.value }}</span>
       </mat-chip>
-    </mat-chip-list>
+    </mat-chip-set>
   </div>
   <div class="co-pilot-donwvote-textarea-container">
     <div class="co-pilot-downvote-textarea" [formGroup]="form">

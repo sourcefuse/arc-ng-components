@@ -5,9 +5,9 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {take} from 'rxjs';
 
 import {FeedbackOptions, ReasonEnum} from '../../enums/feedback.enum';
 import {UserFeedback} from '../../models/feedback.model';
@@ -16,6 +16,8 @@ import {LocalizationProviderService} from '../../services';
 import {CoPilotDownvote} from '../../constants';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotDownvote,
   templateUrl: './co-pilot-downvote.component.html',
   styleUrls: ['./co-pilot-downvote.component.scss'],

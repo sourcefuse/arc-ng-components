@@ -17,6 +17,17 @@ import {SseService} from '../../services/sse.service';
 import {CoPilotComponent} from './co-pilot.component';
 import {AnyObject} from '../../interfaces';
 import {Integers} from '../../enums/numbers.enum';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {LocalizationPipe} from '../../pipes/localization.pipe';
 
 describe('CoPilotComponent', () => {
   let component: CoPilotComponent;
@@ -63,8 +74,18 @@ describe('CoPilotComponent', () => {
     imageStoreSvcSpy = jasmine.createSpyObj('ImageStoreService', ['removeMap']);
 
     await TestBed.configureTestingModule({
-      declarations: [CoPilotComponent],
-      imports: [MatDialogModule, HttpClientModule],
+      declarations: [CoPilotComponent, LocalizationPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        MatDialogModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        DragDropModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatIconModule,
+        MatTooltipModule,
+      ],
       providers: [
         {provide: MatDialogRef, useValue: {}},
         {provide: MAT_DIALOG_DATA, useValue: []},
@@ -134,6 +155,22 @@ describe('CoPilotComponent', () => {
     const automationId = deepChatElement.getAttribute('automation-id');
 
     expect(automationId).toBe('deep-chat-co-pilot');
+  });
+
+  it('should bind the deep-chat request handler on the first render', () => {
+    const deepChatElement = fixture.nativeElement.querySelector('#deep-chat');
+
+    expect(component.requestProp.handler).toBe(component.handler);
+    expect(deepChatElement.request).toBe(component.requestProp);
+  });
+
+  it('should keep the request binding stable across change detection', () => {
+    const firstRequest = component.requestProp;
+
+    fixture.detectChanges();
+
+    expect(component.requestProp).toBe(firstRequest);
+    expect(() => fixture.checkNoChanges()).not.toThrow();
   });
 
   it('should send a question and process the response', () => {
@@ -248,5 +285,77 @@ describe('CoPilotComponent', () => {
     component['_handleEventTypes']('start', '', signals);
 
     expect(component.disableSubmitButton).toHaveBeenCalledWith(false);
+  });
+});
+
+// Angular 22 apps are zoneless by default, so nothing re-renders after a timer
+// unless the component asks for it.
+describe('CoPilotComponent (zoneless host)', () => {
+  let component: CoPilotComponent;
+  let fixture: ComponentFixture<CoPilotComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [CoPilotComponent, LocalizationPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [MatDialogModule, MatTooltipModule],
+      providers: [
+        provideZonelessChangeDetection(),
+        {provide: MatDialogRef, useValue: {}},
+        {provide: MAT_DIALOG_DATA, useValue: []},
+        {
+          provide: DeepChatUtilService,
+          useValue: jasmine.createSpyObj('DeepChatUtilService', [
+            'getChatStyles',
+            'getMessageStyles',
+            'getTextInput',
+            'getRequestConnection',
+            'getSubmitButtonStyles',
+          ]),
+        },
+        {
+          provide: DeepChatCommsService,
+          useValue: jasmine.createSpyObj('DeepChatCommsService', [
+            'receiveTrigger',
+            'onVideoScrollPosition',
+          ]),
+        },
+        {
+          provide: SseService,
+          useValue: jasmine.createSpyObj('SseService', ['connectToSse']),
+        },
+        {
+          provide: ImageStoreService,
+          useValue: jasmine.createSpyObj('ImageStoreService', ['removeMap']),
+        },
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(CoPilotComponent);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should pass the request handler to deep-chat on the first render', () => {
+    const deepChatElement = fixture.nativeElement.querySelector('#deep-chat');
+
+    expect(deepChatElement.request).toBe(component.requestProp);
+    expect(deepChatElement.request.handler).toBe(component.handler);
+  });
+
+  it('should render deep-chat again after reset chat', async () => {
+    spyOn(component.chatElementRef.nativeElement, 'clearMessages');
+    const markForCheckSpy = spyOn(
+      component['cdr'],
+      'markForCheck',
+    ).and.callThrough();
+
+    component.resetChat();
+    await new Promise(resolve => setTimeout(resolve));
+    await fixture.whenStable();
+
+    expect(markForCheckSpy).toHaveBeenCalled();
+    expect(component.showDeepChatComp).toBeTrue();
+    expect(fixture.nativeElement.querySelector('#deep-chat')).toBeTruthy();
   });
 });
