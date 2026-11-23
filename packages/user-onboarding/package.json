@@ -12,7 +12,6 @@
     "test": "ng test --no-watch",
     "coverage": "ng test --code-coverage --no-watch",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "userOnBoardingBuild": "ng build userOnboardingLib  && cp -r projects/user-onboarding-lib/src/assets projects/user-onboarding-lib/dist"
   },
   "repository": {
@@ -39,7 +38,7 @@
     "rxjs": "~7.8.1",
     "shepherd.js": "^10.0.0",
     "tslib": "^2.6.2",
-    "uuid": "^8.3.2",
+    "uuid": "^11.1.1",
     "zone.js": "~0.15.0"
   },
   "files": [
@@ -53,7 +52,6 @@
     "@types/fs-extra": "^11.0.1",
     "@types/jasmine": "~3.6.0",
     "@types/node": "18.7.8",
-    "@types/uuid": "^8.3.4",
     "concat": "^1.0.3",
     "fs-extra": "^11.1.0",
     "jasmine-core": "~4.1.0",
@@ -65,7 +63,6 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^22.2.6",
     "ngx-webstorage-service": "^4.1.0",
-    "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~6.0.0"
   },
