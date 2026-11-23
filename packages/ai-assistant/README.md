@@ -2,6 +2,17 @@
 
 The ai-assistant library is a versatile and intelligent solution designed to seamlessly integrate AI-powered question-answering capabilities into Angular applications. This modular component allows developers to connect with configured AI models, enabling users to submit queries and receive AI-generated responses effortlessly.
 
+## Angular version support
+
+This version of the library requires Angular 22.
+
+| Library version | Angular | Node.js |
+| --- | --- | --- |
+| 0.2.0 and later | 22 | ^22.22.3, ^24.15.0 or >=26 |
+| 0.1.x | 14 | Angular 14 requirements |
+
+If you are upgrading from 0.1.x, see [Upgrading from 0.1.x](#upgrading-from-01x).
+
 ##  Structure
 
 The Structure of the ai-assistant is as follows
@@ -46,11 +57,19 @@ The Structure of the ai-assistant is as follows
 
 - The co-pilot-related-topics component enhances user engagement by suggesting additional subjects pertinent to the current conversation. This feature encourages deeper exploration and understanding by presenting users with a curated list of related topics, fostering a more comprehensive and interactive experience.
 
-## Intsallation
+## Installation
 
 ```bash
 npm install @sourceloop/ai-assistant-client
 ```
+
+The library expects these Angular packages in your app (all version 22):
+
+```bash
+npm install @angular/core@22 @angular/common@22 @angular/cdk@22 @angular/elements@22 @angular/material@22
+```
+
+`@angular/material` is not listed as a peer dependency, but the assistant uses Material dialogs, chips, tooltips and icons, so your app needs it.
 
 ## Usage
 To integrate the AI Assistant into your Angular application, follow these steps:
@@ -69,7 +88,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { XComponent } from './x/x.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AiAssistantModule } from '@sourceloop/ai-assistant';
+import { AiAssistantModule } from '@sourceloop/ai-assistant-client';
 @NgModule({
   declarations: [AppComponent, XComponent],
   imports: [
@@ -83,10 +102,26 @@ import { AiAssistantModule } from '@sourceloop/ai-assistant';
 export class AppModule {}
 ```
 
-- Also import  this styles.scss in project root style.scss
+The library components are NgModule based (`standalone: false`), so import `AiAssistantModule` as shown, including in standalone apps (add it to the `imports` of the component that opens the assistant, or to `importProvidersFrom` in `bootstrapApplication`). It works with both zoneless apps (the Angular 22 default) and apps that use zone.js.
 
+- Import the icon font in your global `styles.scss`:
+
+```scss
+@import '../node_modules/@sourceloop/ai-assistant-client/src/assets/icons/icomoon/style.css';
 ```
-@import '../node_modules/@sourceloop/ai-assistant/src/assets/icons/icomoon/style.css';
+
+- Copy the library images into your app's assets in `angular.json` (build options), so icons such as the related-topics icon load:
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+    "glob": "**/*",
+    "input": "node_modules/@sourceloop/ai-assistant-client/src/assets",
+    "output": "assets"
+  }
+]
 ```
 
 - To use co-pilot component
@@ -107,6 +142,25 @@ this.dialogRef = this.dialog.open(CoPilotComponent, {
       },
     });
 ```
+
+- If you want the dialog without its default background and shadow, set the Material dialog tokens in your global styles:
+
+```scss
+.mat-mdc-dialog-container {
+  --mat-dialog-container-color: transparent;
+  --mat-dialog-container-elevation-shadow: none;
+}
+```
+
+## Upgrading from 0.1.x
+
+0.1.x was built for Angular 14. Moving to 0.2.0 or later:
+
+- Upgrade your app to Angular 22, including `@angular/material` and `@angular/cdk`.
+- Use Node.js ^22.22.3, ^24.15.0 or >=26.
+- Material dialogs no longer use the `.mat-dialog-container` class. If your styles target it, switch to `.mat-mdc-dialog-container` and the dialog tokens shown above.
+- The downvote feedback chips now use Material's `mat-chip-set`. They are styled to match the old look, with small size differences.
+- The public API is unchanged: `AiAssistantModule`, `CoPilotComponent`, the selectors, inputs and outputs work as before.
 
 ## Configuration
 To use the ai-assistant component, you will need to provide certain configuration parameters, such as the SSE URL. This configuration should be set in your environment settings.
@@ -130,6 +184,10 @@ To integrate a new component (e.g., a widget or related topics) into the AI Assi
      - Ensure the component includes the necessary .scss, .ts, and .html files.
 
      - Set the encapsulation mode to ViewEncapsulation.ShadowDom to maintain style isolation.
+
+     - Match the other components: set `standalone: false` and `changeDetection: ChangeDetectionStrategy.Eager`, and declare the component in `AiAssistantModule`.
+
+     - Set any state the template reads before the first render (in the constructor or `ngOnInit`), not in `ngAfterViewInit`. If a timer or callback changes template state later, inject `ChangeDetectorRef` and call `markForCheck()`, because zoneless apps don't re-render on timers.
 
 - Define the Component Selector
 
