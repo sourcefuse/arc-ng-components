@@ -4,6 +4,7 @@ import {
   Inject,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {
@@ -13,6 +14,8 @@ import {
 } from '../../constants';
 import {Integers} from '../../enums/numbers.enum';
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotImageViewer,
   templateUrl: './co-pilot-image-viewer.component.html',
   styleUrls: ['./co-pilot-image-viewer.component.scss'],

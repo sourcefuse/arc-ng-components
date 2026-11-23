@@ -1,14 +1,12 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   Input,
-  Output,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {take} from 'rxjs';
 
 import {CoPilotVideo} from '../../constants';
 import {DeepChatCommsService, CoPilotVideoService} from '../../services';
@@ -16,6 +14,8 @@ import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotVideo,
   templateUrl: './copilot-video.component.html',
   styleUrls: ['./copilot-video.component.scss'],

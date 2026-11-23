@@ -6,10 +6,17 @@ import {
   tick,
 } from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {of} from 'rxjs';
 
 import {CoPilotMessageActionsComponent} from './co-pilot-message-actions.component';
 import {Integers} from '../../enums/numbers.enum';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {LocalizationPipe} from '../../pipes/localization.pipe';
 
 describe('CoPilotMessageActionsComponent', () => {
   let component: CoPilotMessageActionsComponent;
@@ -18,13 +25,21 @@ describe('CoPilotMessageActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CoPilotMessageActionsComponent],
-      imports: [],
+      declarations: [CoPilotMessageActionsComponent, LocalizationPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [
+        ReactiveFormsModule,
+        DragDropModule,
+        MatChipsModule,
+        MatDividerModule,
+        MatIconModule,
+        MatTooltipModule,
+      ],
       providers: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CoPilotMessageActionsComponent);
-    clipboard = TestBed.get(Clipboard);
+    clipboard = TestBed.inject(Clipboard);
 
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -67,6 +82,19 @@ Watch web series instead of
 
     tick(duration);
     expect(component.tooltip.hide).toHaveBeenCalled();
+  }));
+
+  it('should request a re-render when the copy tooltip resets', fakeAsync(() => {
+    spyOn(component.tooltip, 'show');
+    spyOn(component.tooltip, 'hide');
+    const markForCheckSpy = spyOn(component['cdr'], 'markForCheck');
+    component.isCopied = true;
+
+    component.showTooltipForDuration(Integers.OneThousand);
+    tick(Integers.OneThousand);
+
+    expect(component.isCopied).toBeFalse();
+    expect(markForCheckSpy).toHaveBeenCalled();
   }));
 
   it('should copy text to clipboard and update flags and messages', () => {

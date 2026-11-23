@@ -1,15 +1,17 @@
 import {Clipboard} from '@angular/cdk/clipboard';
-import {Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatTooltip} from '@angular/material/tooltip';
-import {take} from 'rxjs';
 
 import {CoPilotMessageActions} from '../../constants';
-import {
-  FeedBackActions,
-  FeedbackOptions,
-  ReasonEnum,
-} from '../../enums/feedback.enum';
+import {FeedBackActions, FeedbackOptions} from '../../enums/feedback.enum';
 import {UserFeedback} from '../../models/feedback.model';
 import {CoPilotDownvoteComponent} from '../co-pilot-downvote/co-pilot-downvote.component';
 import {Integers} from '../../enums/numbers.enum';
@@ -17,6 +19,8 @@ import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {LocalizationProviderService} from '../../services';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotMessageActions,
   templateUrl: './co-pilot-message-actions.component.html',
   styleUrls: [
@@ -30,6 +34,7 @@ export class CoPilotMessageActionsComponent {
   constructor(
     private readonly clipboard: Clipboard,
     private readonly localizationSvc: LocalizationProviderService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   @Input() copy: string;
@@ -112,6 +117,8 @@ export class CoPilotMessageActionsComponent {
       this.tooltip.hide();
       this.tooltipMessage = this.localisedStrings['copyResponseLbl'];
       this.isCopied = false;
+      // Timers don't trigger change detection in zoneless hosts.
+      this.cdr.markForCheck();
     }, duration);
   }
 

@@ -31,6 +31,17 @@
   .co-pilot-downvote-options-list {
     display: flex;
     flex-direction: column;
+
+    // MDC chip sets add negative margins and per-chip margins; use a plain gap
+    // so the rows keep the compact layout of the pre-MDC chips.
+    .mdc-evolution-chip-set__chips {
+      margin-left: $mp-0;
+      gap: $mp-8;
+    }
+    .mdc-evolution-chip-set .mdc-evolution-chip {
+      margin: $mp-0;
+    }
+
     .first-row,
     .second-row {
       margin-bottom: $mp-8;
@@ -44,6 +55,13 @@
     }
 
     .co-pilot-downvote-chip {
+      // MDC chip tokens: drop the built-in outline, touch target and height so
+      // the chip border and padding below are the only box styles.
+      --mat-chip-outline-width: 0;
+      --mat-chip-touch-target-display: none;
+      --mat-chip-container-height: #{$hw-24};
+      --mat-chip-container-shape-radius: #{$border-radius-4};
+      --mat-chip-elevated-container-color: #{$gray-10};
       background: $gray-10;
       border: 1px solid $dark-blue-icon;
       border-radius: $border-radius-4;
@@ -56,7 +74,12 @@
       padding: $mp-4 $mp-8;
       gap: $hw-10;
 
+      .mdc-evolution-chip__action--primary {
+        padding: $mp-0;
+      }
+
       &:hover {
+        --mat-chip-elevated-container-color: #{$blue-hover};
         background-color: $blue-hover;
         .co-pilot-downvote-value-text {
           color: $gray-10;
@@ -64,6 +87,7 @@
       }
 
       &.selected-chip {
+        --mat-chip-elevated-container-color: #{$blue-icon};
         background-color: $blue-icon;
         .co-pilot-downvote-value-text {
           color: $gray-10;

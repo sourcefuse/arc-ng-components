@@ -3,7 +3,8 @@
   "packages/search/projects/search-lib",
   "packages/search/projects/search-element",
   "packages/user-onboarding/projects/user-onboarding-lib",
-  "packages/user-onboarding/projects/user-onboarding-element"
+  "packages/user-onboarding/projects/user-onboarding-element",
+  "packages/ai-assistant/projects/ai-assistant-lib"
 ],
   "command": {
     "version": {

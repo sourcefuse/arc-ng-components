@@ -4,12 +4,15 @@ import {
   Input,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {CoPilotRelatedTopics, LINK_ICON_PATH} from '../../constants';
 import {LocalizationPipe} from '../../pipes/localization.pipe';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotRelatedTopics,
   templateUrl: './co-pilot-related-topics.component.html',
   styleUrls: ['./co-pilot-related-topics.component.scss'],

@@ -1,6 +1,10 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {take} from 'rxjs';
 
 import {CoPilotImage} from '../../constants';
 import {CoPilotImageViewerComponent} from '../co-pilot-image-viewer/co-pilot-image-viewer.component';
@@ -10,6 +14,8 @@ import {LocalizationPipe} from '../../pipes/localization.pipe';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: CoPilotImage,
   templateUrl: './co-pilot-image.component.html',
   styleUrls: ['./co-pilot-image.component.scss'],
@@ -44,7 +50,9 @@ export class CoPilotImageComponent {
   @Input('numquestion')
   numquestion;
 
-  ngAfterViewInit() {
+  // Runs before the first render: changing isImageLoading after the view was
+  // checked left the shimmer stuck on Angular 22 (NG0100, no re-render).
+  ngOnInit() {
     if (this.filekey) {
       this.createSafeUrl();
     }

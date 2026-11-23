@@ -25,7 +25,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@sourceloop/ai-assistant-client/src/assets",
+                "output": "assets"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
@@ -37,7 +42,8 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {
@@ -49,7 +55,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                 "maximumWarning": "6kb",
+                  "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
               ],
@@ -76,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ai-assistant-example:build:production"
+              "buildTarget": "ai-assistant-example:build:production"
             },
             "development": {
-              "browserTarget": "ai-assistant-example:build:development"
+              "buildTarget": "ai-assistant-example:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,14 +93,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ai-assistant-example:build"
+            "buildTarget": "ai-assistant-example:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",

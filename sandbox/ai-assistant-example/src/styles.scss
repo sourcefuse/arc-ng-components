@@ -19,8 +19,10 @@ body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
   }
   
-  .mat-dialog-container {
-    box-shadow: none;
-    background: none;
+  // Angular Material 15+ (MDC) dialogs: the old .mat-dialog-container class is
+  // gone, so clear the surface colour and shadow through the dialog tokens.
+  .mat-mdc-dialog-container {
+    --mat-dialog-container-color: transparent;
+    --mat-dialog-container-elevation-shadow: none;
   }
   

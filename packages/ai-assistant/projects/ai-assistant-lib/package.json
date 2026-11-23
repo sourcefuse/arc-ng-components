@@ -6,10 +6,10 @@
     "angular-library"
   ],
   "peerDependencies": {
-    "@angular/cdk": "^14.0.1",
-    "@angular/common": "^14.0.1",
-    "@angular/core": "^14.0.1",
-    "@angular/elements": "^14.0.1"
+    "@angular/cdk": "^22.2.6",
+    "@angular/common": "^22.2.6",
+    "@angular/core": "^22.2.6",
+    "@angular/elements": "^22.2.6"
   },
   "dependencies": {
     "deep-chat": "^1.4.11",
