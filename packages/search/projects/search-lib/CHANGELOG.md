@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@12.0.0...@sourceloop/search-client@12.1.0) (2026-11-27)
+
+### Features
+
+- **deps:** bump angular to 22.2.6 and node-forge to 1.4.3 ([#91](https://github.com/sourcefuse/arc-ng-components/issues/91)) ([79d10bd](https://github.com/sourcefuse/arc-ng-components/commit/79d10bdb9695f9bcb8d0ccd69f8bf3008ab22a57)), closes [#90](https://github.com/sourcefuse/arc-ng-components/issues/90)
+
 # [12.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/search-client@11.0.0...@sourceloop/search-client@12.0.0) (2026-09-29)
 
 ### chore

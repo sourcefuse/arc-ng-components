@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-client@10.0.0...@sourceloop/user-onboarding-client@10.1.0) (2026-11-27)
+
+### Bug Fixes
+
+- **deps:** patch vantage-reported vulnerabilities in user-onboarding and search sandbox ([4567b72](https://github.com/sourcefuse/arc-ng-components/commit/4567b72dc560e794095f913204f5212f1e0ba590)), closes [#93](https://github.com/sourcefuse/arc-ng-components/issues/93)
+
+### Features
+
+- **deps:** bump angular to 22.2.6 and node-forge to 1.4.3 ([#91](https://github.com/sourcefuse/arc-ng-components/issues/91)) ([79d10bd](https://github.com/sourcefuse/arc-ng-components/commit/79d10bdb9695f9bcb8d0ccd69f8bf3008ab22a57)), closes [#90](https://github.com/sourcefuse/arc-ng-components/issues/90)
+
 # [10.0.0](https://github.com/sourcefuse/arc-ng-components/compare/@sourceloop/user-onboarding-client@9.0.2...@sourceloop/user-onboarding-client@10.0.0) (2026-09-29)
 
 ### Bug Fixes
